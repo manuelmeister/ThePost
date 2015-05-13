@@ -1,45 +1,53 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: bmeism
- * Date: 13.05.2015
- * Time: 16:44
+ * User: manuelmeister
+ * Date: 14.05.15
+ * Time: 00:25
  */
 
 namespace ThePost\Controller;
 
 
-use Meister\MVC\View\EntryView;
-use Meister\MVC\View\View;
 use ThePost\Model\Model;
+use ThePost\View\View;
 
 /**
  * Class DefaultController
  * @package ThePost\Controller
  */
-class DefaultController
-{
+class DefaultController {
 
     /**
      * @var Model
      */
-    protected $db;
+    protected $model;
 
     /**
-     * @param $db
+     * @var View
      */
-    function __construct($db)
-    {
-        $this->db = $db;
-    }
+    protected $view;
 
     /**
-     * @param $param
+     * @var array
      */
-    public function index($param)
+    protected $options_array = array();
+
+    /**
+     * @param $model
+     */
+    function __construct($model)
     {
-        $stmt = $this->db->pdo->prepare('SELECT ')
-        $view = new EntryView();
+        $this->model = $model;
+
+        $stmt = $this->model->pdo->prepare('SELECT * FROM Options;');
+        $stmt->execute();
+        $options = $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'ThePost\Model\Entity\Options');
+
+        foreach ($options as $option) {
+            /** @var ThePost/Model/Entity/Options $option */
+            $this->options_array[$option->getKey()] = utf8_encode($option->getValue());
+        }
     }
 
 }
