@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>{{ site.title }}</title>
+    {% endblock %}
+</head>
+<body>
+{% block nav %}
+{#<nav>
+    <ul>
+    {% for item in site.navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+</nav>#}
+{% endblock %}
+<main>
+    {% block main %}
+        {% for article in articles %}
+        <article class="article" id="article-{{ article.id }}">
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.excerpt }}</p>
+        </article>
+        {% endfor %}
+    {% endblock %}
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+-
+  match: "(^/entry/(?:(?:(?P<id>[0-9]+)/?$)|(?:(?P<slug>[A-z0-9_\-.]+)/?$))?)"
+  controller: "PageController"
+  method: "index"
+-
+  match: "(.*)"
+  controller: "DefaultController"
+  method: "index"

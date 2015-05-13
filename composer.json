@@ -1,0 +1,25 @@
+{
+  "name": "thepost/ThePost",
+  "description": "A simple Blog",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "require": {
+    "twig/twig": "1.9.0",
+    "mustangostang/spyc": "0.5.1"
+  },
+  "authors": [
+    {
+      "name": "Manuel Meister",
+      "email": "news.manuelsworld@gmail.com"
+    },
+    {
+      "name": "Lukas Walker",
+      "email": "lukas.walker@bluewin.ch"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "ThePost\\": ""
+    }
+  }
+}

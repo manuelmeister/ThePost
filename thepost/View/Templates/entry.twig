@@ -1,0 +1,8 @@
+{% extends "index.twig" %}
+
+{% block main %}
+    <article class="article" id="article-{{ article.id }}">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.excerpt }}</p>
+    </article>
+{% endblock %}
