@@ -6,6 +6,12 @@
  * Time: 16:31
  */
 
+namespace ThePost\Model\Entity;
+
+/**
+ * Class Entry
+ * @package ThePost\Model\Entity
+ */
 class Entry {
 
     /**
