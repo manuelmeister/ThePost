@@ -1,0 +1,21 @@
+body {
+    background: #efefef;
+}
+
+h1,h2,h3{
+    font-family: "Adelle","Chaparall","Georgia","Times","Times New Roman",serif;
+    font-weight: 600;
+}
+
+h1{
+    font-size: 6rem;
+}
+
+.main {
+    margin-bottom: 20px;
+}
+
+.element {
+    padding: 20px;
+    background: white;
+}
