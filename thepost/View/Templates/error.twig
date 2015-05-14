@@ -1,8 +1,14 @@
 {% extends "index.twig" %}
 
+{% block navitems %}
+    <li><a href="/">Home</a></li>
+    <li><a href="/login/">Login</a></li>
+{% endblock %}
+
 {% block main %}
     <article class="element entry">
         <h2>Error</h2>
+
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
