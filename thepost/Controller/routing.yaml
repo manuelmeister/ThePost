@@ -3,6 +3,14 @@
   controller: "EntryController"
   method: "index"
 -
+  match: "(^/login/$)"
+  controller: "LoginController"
+  method: "login"
+-
+  match: "(^/login/submit/$)"
+  controller: "LoginController"
+  method: "submit"
+-
   match: "(.*)"
   controller: "DefaultController"
-  method: "index"
+  method: "front"
