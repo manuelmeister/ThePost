@@ -12,7 +12,7 @@ namespace ThePost\Model\Entity;
  * Class Entry
  * @package ThePost\Model\Entity
  */
-class Entry {
+class Entry{
 
     /**
      * @var int
@@ -93,6 +93,20 @@ class Entry {
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExcerpt()
+    {
+        $wordcount = 20;
+        preg_match("/(?:[^\s,\.;\?\!]+(?:[\s,\.;\?\!]+|$)){0,$wordcount}/", $this->content, $matches);
+        return implode(
+            '',
+            $matches
+        );
+
     }
 
     /**
