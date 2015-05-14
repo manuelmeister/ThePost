@@ -6,16 +6,19 @@
  * Time: 20:55
  */
 
-namespace Meister\MVC\View;
+namespace ThePost\View;
 
 
 class EntryView extends View{
 
-    function __construct($entry,$site)
+    function __construct($entry,$options)
     {
         parent::__construct();
 
         $template = $this->twig->loadTemplate("entry.twig");
-        echo $template->render(array($site,$entry));
+        echo $template->render(array(
+            'options'  =>  $options,
+            'entry' =>  $entry
+        ));
     }
 }
