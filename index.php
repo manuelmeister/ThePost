@@ -1,6 +1,6 @@
 <?php
 
-include 'autoloader.php';
+include 'vendor/autoload.php';
 
 $controller = new \ThePost\Controller\Controller();
 
