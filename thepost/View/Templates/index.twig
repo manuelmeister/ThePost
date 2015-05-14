@@ -23,8 +23,10 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="container nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="login">Login</a></li>
+                {% block navitems %}
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="login">Login</a></li>
+                {% endblock %}
             </ul>
         </div>
     </nav>
@@ -33,11 +35,11 @@
     <div class="content row">
         <main class="main col-md-8">
             {% block main %}
-                {% for article in articles %}
-                    <article class="article" id="article-{{ article.id }}">
-                        <h2>{{ article.title }}</h2>
+                {% for entry in entries %}
+                    <article class="element entry" id="entry-{{ entry.id }}">
+                        <h2>{{ entry.title }}</h2>
 
-                        <p>{{ article.excerpt }}</p>
+                        <p>{{ entry.content }}</p>
                     </article>
                 {% endfor %}
             {% endblock %}
@@ -54,7 +56,7 @@
     </div>
 </div>
 <footer class="container">
-{{ options.copyright }}
+    {{ options.copyright }}
 </footer>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

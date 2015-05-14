@@ -6,8 +6,7 @@
  * Time: 21:34
  */
 
-namespace Meister\MVC\View;
-
+namespace ThePost\View;
 
 class View {
 

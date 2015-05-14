@@ -10,6 +10,8 @@ namespace ThePost\Controller;
 
 
 use ThePost\Model\Model;
+use ThePost\Model\Repository\EntryRepository;
+use ThePost\View\FrontView;
 use ThePost\View\View;
 
 /**
@@ -48,6 +50,12 @@ class DefaultController {
             /** @var ThePost/Model/Entity/Options $option */
             $this->options_array[$option->getKey()] = utf8_encode($option->getValue());
         }
+    }
+
+    public function front(){
+        $entry_repository = new EntryRepository($this->model->pdo);
+        $entries = $entry_repository->findAll();
+        $this->view = new FrontView($entries,$this->options_array);
     }
 
 }
