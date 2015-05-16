@@ -9,13 +9,18 @@
 namespace ThePost\Controller;
 
 
+use ThePost\View\LoginView;
+
 class LoginController extends DefaultController {
 
     public function login(){
-        //TODO implement login
+        $this->view = new LoginView($this->options_array,$auth = null);
     }
 
-    public function submit(){
-        //TODO implement $_POST submit
+    /**
+     * @param $auth bool
+     */
+    public function submit($auth = null){
+        $this->view = new LoginView($this->options_array,$auth);
     }
 }

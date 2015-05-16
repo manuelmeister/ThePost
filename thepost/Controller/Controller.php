@@ -28,6 +28,7 @@ class Controller {
         $method = $request->getMethod();
         $param = $request->getParam();
 
+        //TODO Add authentication here
         $this->current = new $controller($this->model);
         $this->current->$method($param);
     }
