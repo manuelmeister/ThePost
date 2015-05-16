@@ -8,7 +8,6 @@
 
 namespace ThePost\Controller;
 
-use ThePost\Model\Model;
 use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;
 
