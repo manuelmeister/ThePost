@@ -52,7 +52,7 @@ class DefaultController {
         }
     }
 
-    public function front(){
+    public function front($param){
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
         $this->view = new FrontView($entries,$this->options_array);
