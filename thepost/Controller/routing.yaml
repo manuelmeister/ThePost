@@ -11,6 +11,10 @@
   controller: "LoginController"
   method: "submit"
 -
-  match: "(.*)"
+  match: "(^\/$)"
   controller: "DefaultController"
+  method: "front"
+-
+  match: "(/?(?P<page>.*))"
+  controller: "ErrorController"
   method: "front"
