@@ -15,8 +15,8 @@ class EntryErrorView extends View{
     {
         parent::__construct();
 
-        $template = $this->twig->loadTemplate("error.twig");
-        echo $template->render(array(
+        $this->set_template("error.twig");
+        echo $this->template->render(array(
             'type'  =>  'Entry',
             'error' =>  $entry
         ));

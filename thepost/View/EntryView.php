@@ -15,8 +15,8 @@ class EntryView extends View{
     {
         parent::__construct();
 
-        $template = $this->twig->loadTemplate("entry.twig");
-        echo $template->render(array(
+        $this->set_template("entry.twig");
+        echo $this->template->render(array(
             'options'  =>  $options,
             'entry' =>  $entry
         ));

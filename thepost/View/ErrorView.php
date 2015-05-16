@@ -14,8 +14,8 @@ class ErrorView extends View{
     function __construct($param,$options)
     {
         parent::__construct();
-        
-        $this->template = $this->twig->loadTemplate('error.twig');
+
+        $this->set_template('error.twig');
         echo $this->template->render(array(
             'error' =>  array(
                 'msg'   =>  $param
