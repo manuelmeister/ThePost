@@ -11,17 +11,16 @@ namespace ThePost\View;
 
 class ErrorView extends View{
 
-    function __construct($param,$options)
+    function __construct($param)
     {
         parent::__construct();
 
+        $this->render_vars['error'] = array(
+            'msg'   =>  $param
+        );
+
+        $this->render_vars['type'] = 'Page';
+
         $this->set_template('error.twig');
-        echo $this->template->render(array(
-            'error' =>  array(
-                'msg'   =>  $param
-            ),
-            'options'   =>  $options,
-            'type'  =>  'Page'
-        ));
     }
 }

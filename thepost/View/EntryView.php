@@ -11,14 +11,12 @@ namespace ThePost\View;
 
 class EntryView extends View{
 
-    function __construct($entry,$options)
+    function __construct($entry)
     {
         parent::__construct();
 
+        $this->render_vars['entry'] = $entry;
+
         $this->set_template("entry.twig");
-        echo $this->template->render(array(
-            'options'  =>  $options,
-            'entry' =>  $entry
-        ));
     }
 }

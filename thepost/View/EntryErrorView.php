@@ -15,10 +15,9 @@ class EntryErrorView extends View{
     {
         parent::__construct();
 
+        $this->render_vars['type'] = 'Entry';
+        $this->render_vars['error'] = $entry;
+
         $this->set_template("error.twig");
-        echo $this->template->render(array(
-            'type'  =>  'Entry',
-            'error' =>  $entry
-        ));
     }
 }

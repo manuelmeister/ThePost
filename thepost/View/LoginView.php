@@ -11,16 +11,10 @@ namespace ThePost\View;
 
 class LoginView extends View {
 
-    function __construct($options,$auth)
+    function __construct()
     {
         parent::__construct();
 
         $this->set_template('login.twig');
-        echo $this->template->render(array(
-            'options'   =>  $options,
-            'auth'      =>  array(
-                'failed'    =>  $auth
-            )
-        ));
     }
 }
