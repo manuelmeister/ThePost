@@ -1,36 +1,4 @@
-<!DOCTYPE html>
-<html lang="de_CH">
-<head>
-    {% block head %}
-        <title>{{ options.title }}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/thepost/View/Templates/css/style.css"/>
-        <meta charset="UTF-8"/>
-    {% endblock %}
-</head>
-<body class="container">
-<h1 class="container hidden-xs">{{ options.title }}</h1>
-{% block nav %}
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand visible-xs-block" href="#">{{ options.title }}</a>
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="container nav navbar-nav">
-                {% block navitems %}
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/login/">Login</a></li>
-                {% endblock %}
-            </ul>
-        </div>
-    </nav>
-{% endblock %}
+{% include 'header.twig' %}
 <div class="container-fluid">
     <div class="content row">
         <main class="main col-md-8">
@@ -55,10 +23,4 @@
         {% endblock %}
     </div>
 </div>
-<footer class="container">
-    {{ options.copyright }}
-</footer>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% include 'footer.twig' %}
