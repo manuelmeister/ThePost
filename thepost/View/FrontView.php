@@ -11,14 +11,12 @@ namespace ThePost\View;
 
 class FrontView extends View {
 
-    function __construct($entries,$options)
+    function __construct($entries)
     {
         parent::__construct();
 
+        $this->render_vars['entries'] = $entries;
+
         $this->set_template("index.twig");
-        echo $this->template->render(array(
-            'options'  =>  $options,
-            'entries' =>  $entries
-        ));
     }
 }
