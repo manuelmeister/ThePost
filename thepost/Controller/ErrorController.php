@@ -20,7 +20,7 @@ class ErrorController extends DefaultController {
     /**
      * @param $param
      */
-    public function front($param){
-        new ErrorView($param['page'],$this->options_array);
+    public function frontpage($param){
+        new ErrorView($param['page']);
     }
 }
