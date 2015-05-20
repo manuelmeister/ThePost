@@ -11,6 +11,10 @@
   controller: "LoginController"
   method: "submit"
 -
+  match: "(^/logout/$)"
+  controller: "LoginController"
+  method: "logout"
+-
   match: "(^\/$)"
   controller: "DefaultController"
   method: "front"
