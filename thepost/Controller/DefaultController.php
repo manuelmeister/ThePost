@@ -78,7 +78,7 @@ class DefaultController {
     /**
      * @param $param
      */
-    public function front($param){
+    public function frontpage($param){
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
         $this->view = new FrontView($entries);
