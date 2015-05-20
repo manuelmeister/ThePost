@@ -24,7 +24,7 @@ class LoginController extends DefaultController {
             $username = trim($_POST['username']);
             $password = trim($_POST['password']);
 
-            $stmt = $this->model->pdo->prepare('SELECT id,password_hash FROM User WHERE email=:username OR username=:username;');
+            $stmt = $this->model->pdo->prepare('SELECT id,password_hash FROM User WHERE email=:username OR username=:username LIMIT 1;');
             $stmt->bindParam(':username',$username);
             $stmt->execute();
 
