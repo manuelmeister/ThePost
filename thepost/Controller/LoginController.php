@@ -9,18 +9,45 @@
 namespace ThePost\Controller;
 
 
+use ThePost\Model\Repository\EntryRepository;
+use ThePost\View\FrontView;
 use ThePost\View\LoginView;
 
 class LoginController extends DefaultController {
 
     public function login(){
-        $this->view = new LoginView($this->options_array,$auth = null);
+        $this->view = new LoginView();
     }
 
-    /**
-     * @param $auth bool
-     */
-    public function submit($auth = null){
-        $this->view = new LoginView($this->options_array,$auth);
+    public function submit(){
+        if(isset($_POST['login'])){
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
+
+            $stmt = $this->model->pdo->prepare('SELECT id,password_hash FROM User WHERE email=:username OR username=:username;');
+            $stmt->bindParam(':username',$username);
+            $stmt->execute();
+
+            $login_user = $stmt->fetch();
+
+            if(password_verify($password,$login_user['password_hash'])){
+
+                $_SESSION['user_id'] = $login_user['id'];
+
+                parent::frontpage(array());
+
+            }else{
+                $this->view = new LoginView();
+                $this->view->add_render_vars(array('auth'=>array('failed'=>true)));
+            }
+
+        }
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+
+        parent::frontpage(array());
     }
 }
