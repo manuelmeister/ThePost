@@ -61,9 +61,11 @@ class Controller {
 
         if(isset($_SESSION['user_id'])){
 
-            $stmt = $this->model->pdo->prepare('SELECT * FROM `User` WHERE id =:id;');
-            $stmt->bindParam(':id',$_SESSION['user_id']);
+            //:id is a placeholder for the id given in bindParam()
+            $stmt = $this->model->pdo->prepare('SELECT id,email,username FROM `User` WHERE id =:id LIMIT 1;');
+            $stmt->bindParam(':id',$_SESSION['user_id'],\PDO::PARAM_INT);
             $stmt->execute();
+            //fill model with data from database
             $this->user = $stmt->fetchObject('ThePost\Model\Entity\User');
 
             $this->user->setLogin(true);
@@ -76,7 +78,9 @@ class Controller {
     }
 
     /**
-     *
+     * $controller contains the path to the Controller that is actually used
+     * $method contains the method used by the Controller
+     * $param contains the parameter given by the route
      */
     private function create_controller(){
         $this->request = new RequestHandler($_SERVER['REQUEST_URI']);
@@ -85,6 +89,7 @@ class Controller {
         $method = $this->request->getMethod();
         $param = $this->request->getParam();
 
+        //THE MAGIC: a new controller is instantiated using the string containing the namespace and name of the Controller
         $this->controller = new $controller($this->model);
         $this->controller->$method($param);
     }
