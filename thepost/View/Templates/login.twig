@@ -2,7 +2,6 @@
 
 {% block navitems %}
     <li><a href="/">Home</a></li>
-    <li class="active"><a href="/login/">Login</a></li>
 {% endblock %}
 
 {% block main %}
@@ -29,7 +28,7 @@
             {% if auth.failed == true %}
                 <div id="loginErrorMsg" class="alert alert-danger" role="alert">Wrong username or password</div>
             {% endif %}
-            <button type="submit" class="btn btn-success btn-block">Login</button>
+            <button type="submit" class="btn btn-success btn-block" name="login">Login</button>
         </form>
     </div>
 {% endblock %}
