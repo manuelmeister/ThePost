@@ -17,8 +17,8 @@
 -
   match: "(^\/$)"
   controller: "DefaultController"
-  method: "front"
+  method: "frontpage"
 -
   match: "(/?(?P<page>.*))"
   controller: "ErrorController"
-  method: "front"
+  method: "frontpage"
