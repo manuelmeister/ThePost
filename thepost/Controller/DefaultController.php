@@ -9,6 +9,7 @@
 namespace ThePost\Controller;
 
 
+use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\FrontView;
@@ -28,7 +29,7 @@ class DefaultController {
     /**
      * @var View
      */
-    protected $view;
+    public $view;
 
     /**
      * @var array
@@ -36,12 +37,34 @@ class DefaultController {
     protected $options_array = array();
 
     /**
+     * @var User
+     */
+    protected $authentication;
+
+    /**
      * @param $model
      */
     function __construct($model)
     {
         $this->model = $model;
+        $this->get_options();
+    }
 
+    /**
+     * @param $authentication
+     */
+    public function set_authentication($authentication)
+    {
+        $this->authentication = $authentication;
+    }
+
+    public function set_vars()
+    {
+        $this->view->set_render_vars($this->options_array,$this->authentication);
+    }
+
+    public function get_options()
+    {
         $stmt = $this->model->pdo->prepare('SELECT * FROM Options;');
         $stmt->execute();
         $options = $stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'ThePost\Model\Entity\Options');
@@ -52,10 +75,13 @@ class DefaultController {
         }
     }
 
+    /**
+     * @param $param
+     */
     public function front($param){
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
-        $this->view = new FrontView($entries,$this->options_array);
+        $this->view = new FrontView($entries);
     }
 
 }
