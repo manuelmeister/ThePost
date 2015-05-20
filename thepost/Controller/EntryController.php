@@ -29,7 +29,7 @@ class EntryController extends DefaultController
             $this->view = new EntryErrorView(array('msg' => (isset($param['slug']))?$param['slug']:$param['id']));
         }else{
             $entry = $stmt->fetchObject('ThePost\Model\Entity\Entry');
-            $this->view = new EntryView($entry, $this->options_array);
+            $this->view = new EntryView($entry);
         }
     }
 
