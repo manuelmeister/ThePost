@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - thepost@localhost" uuid="40de9c28-2f57-4fc7-803e-9f38ff65c273">
-    <database-info product="MySQL" version="5.6.23-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="thepost"/>
-    <table name="Entry" schema="" catalog="thepost" type="TABLE">
+    <table name="entry" schema="" catalog="thepost" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="slug" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
@@ -15,9 +15,16 @@
       <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
-    <table name="User" schema="" catalog="thepost" type="TABLE">
+    <table name="options" schema="" catalog="thepost" type="TABLE">
+      <column name="key" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="value" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="key"/>
+    </table>
+    <table name="user" schema="" catalog="thepost" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="username" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="Jyc="/>
+      <column name="password_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>

@@ -21,6 +21,6 @@ class ErrorController extends DefaultController {
      * @param $param
      */
     public function frontpage($param){
-        new ErrorView($param['page']);
+        $this->view = new ErrorView($param['page']);
     }
 }
