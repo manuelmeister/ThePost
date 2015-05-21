@@ -23,3 +23,21 @@ h1{
     padding: 20px;
     background: white;
 }
+
+.glyphicon-refresh-animate {
+    -webkit-animation: rotate 1s linear infinite;
+    -o-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    100%{
+        transform: rotate(1turn);
+    }
+}
+
+@-webkit-keyframes rotate {
+     100%{
+         -webkit-transform: rotate(1turn);
+     }
+ }
