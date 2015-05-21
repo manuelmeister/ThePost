@@ -7,6 +7,7 @@
  */
 
 namespace ThePost\Model\Repository;
+use ThePost\Model\Entity\Entry;
 
 
 /**
@@ -20,15 +21,52 @@ class EntryRepository {
      */
     private $pdo;
 
+    /**
+     * @param $pdo
+     */
     function __construct($pdo)
     {
         $this->pdo = $pdo;
     }
 
+    /**
+     * this functions finds an Entry by its ID
+     * @param $id
+     * @return Entry
+     */
+    public function findById($id){
+        $id = intval($id);
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:id LIMIT 1');
+        $stmt->bindParam(":id",$id);
+        $stmt->execute();
+        return $stmt->fetchObject('ThePost\Model\Entity\Entry');
+    }
+
+
+    /**
+     * @return array
+     */
     public function findAll(){
         $stmt = $this->pdo->prepare('SELECT * FROM Entry');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, 'ThePost\Model\Entity\Entry');
     }
+
+
+    /**
+     * @param $id int
+     * @param $title String
+     * @param $text String
+     */
+    public function update($id, $title, $text){
+        $stmt = $this->pdo->prepare('UPDATE Entry SET title=:title,content=:text WHERE id=:id;');
+        $stmt->bindParam(':title',$title);
+        $stmt->bindParam(':text',$text);
+        $stmt->bindParam(':id',$id);
+        $stmt->execute();
+
+    }
+
+
 
 }
