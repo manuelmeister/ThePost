@@ -9,15 +9,26 @@
 namespace ThePost\Model;
 
 
+/**
+ * Class Model
+ * @package ThePost\Model
+ */
 class Model {
 
+    /**
+     * FIY: PDO is a standardized wrapper for any database
+     * @var \PDO
+     */
     public $pdo;
 
+    /**
+     *
+     */
     function __construct()
     {
         $dsn = 'mysql:dbname=thepost;host=localhost';
-        $user = 'thepost';
-        $password = '1234';
+        $user = 'lukas';
+        $password = 'abcd';
         $this->pdo = new \PDO($dsn,$user,$password);
     }
 }
