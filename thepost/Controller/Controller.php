@@ -49,9 +49,11 @@ class Controller {
 
         $this->create_controller();
         $this->session_management();
-        $this->init_vars();
+        if(!$this->controller instanceof UploadController){
+            $this->init_vars();
 
-        echo $this->controller->view->render();
+            echo $this->controller->view->render();
+        }
     }
 
     /**
