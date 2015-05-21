@@ -3,6 +3,10 @@
   controller: "EntryController"
   method: "index"
 -
+  match: "(^/upload/(?P<type>[a-z]+)/(?P<id>[0-9]+)/?$)"
+  controller: "UploadController"
+  method: "update"
+-
   match: "(^/login/$)"
   controller: "LoginController"
   method: "login"
