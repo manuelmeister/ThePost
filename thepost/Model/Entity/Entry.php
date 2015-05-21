@@ -37,7 +37,7 @@ class Entry{
     /**
      * @var
      */
-    private $date;
+    private $timestamp;
 
     /**
      * @return int
@@ -120,16 +120,16 @@ class Entry{
     /**
      * @return mixed
      */
-    public function getDate()
+    public function getTimestamp()
     {
-        return $this->date;
+        return $this->timestamp;
     }
 
     /**
-     * @param mixed $date
+     * @param mixed $timestamp
      */
-    public function setDate($date)
+    public function setTimestamp($timestamp)
     {
-        $this->date = $date;
+        $this->timestamp = $timestamp;
     }
 }
