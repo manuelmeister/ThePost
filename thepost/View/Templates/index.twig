@@ -4,7 +4,7 @@
         <main class="main col-md-8">
             {% block main %}
                 {% for entry in entries %}
-                    <article class="element entry" id="entry-{{ entry.id }}">
+                    <article class="element entry clearfix" id="entry-{{ entry.id }}">
                         <h2><a href="/entry/{{ entry.id }}">{{ entry.title }}</a></h2>
 
                         <p>{{ entry.excerpt }}</p>
