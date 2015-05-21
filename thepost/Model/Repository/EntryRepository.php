@@ -7,6 +7,8 @@
  */
 
 namespace ThePost\Model\Repository;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 use ThePost\Model\Entity\Entry;
 
 
@@ -46,7 +48,7 @@ class EntryRepository {
      * @return array
      */
     public function findAll(){
-        $stmt = $this->pdo->prepare('SELECT * FROM Entry');
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry ORDER BY "timestamp"');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, 'ThePost\Model\Entity\Entry');
     }
@@ -58,9 +60,14 @@ class EntryRepository {
      * @param $text String
      */
     public function update($id, $title, $text){
+
+        $purifier_config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($purifier_config);
+        $clean_text = $purifier->purify($text);
+
         $stmt = $this->pdo->prepare('UPDATE Entry SET title=:title,content=:text WHERE id=:id;');
         $stmt->bindParam(':title',$title);
-        $stmt->bindParam(':text',$text);
+        $stmt->bindParam(':text',$clean_text);
         $stmt->bindParam(':id',$id);
         $stmt->execute();
 
