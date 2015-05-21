@@ -16,7 +16,7 @@
             {# glyphicon-floppy-open #}
         {% else %}
             <h2 class="title" >{{ entry.title }}</h2>
-            <p class="text">{{ entry.content }}</p>
+            <p class="text">{{ entry.content|raw }}</p>
         {% endif %}
 
     </article>

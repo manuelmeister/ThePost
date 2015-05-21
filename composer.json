@@ -5,7 +5,8 @@
   "license": "proprietary",
   "require": {
     "twig/twig": "1.9.0",
-    "mustangostang/spyc": "0.5.1"
+    "mustangostang/spyc": "0.5.1",
+    "ezyang/htmlpurifier": "4.6.0"
   },
   "authors": [
     {
