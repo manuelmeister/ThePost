@@ -11,7 +11,7 @@ namespace ThePost\Controller;
 use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\EntryView;
 
-class UploadController extends DefaultController
+class UpdateController extends CRUDController
 {
 
     public function update($param)
@@ -19,8 +19,6 @@ class UploadController extends DefaultController
         try {
             //TODO remove wait time
             sleep(2);
-
-
 
             $title = $_POST['title'];
             $text = $_POST['text'];
