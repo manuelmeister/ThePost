@@ -31,13 +31,14 @@ class EntryRepository {
 
     /**
      * this functions finds an Entry by its ID
-     * @param $id
+     * @param $param
      * @return Entry
      */
-    public function findById($id){
-        $id = intval($id);
-        $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:id LIMIT 1');
-        $stmt->bindParam(":id",$id);
+    public function findByParam($param){
+        $param = $param;
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:id OR slug=:param LIMIT 1');
+        $stmt->bindParam(":id",$param);
+        $stmt->bindParam(":slug",$param);
         $stmt->execute();
         return $stmt->fetchObject('ThePost\Model\Entity\Entry');
     }

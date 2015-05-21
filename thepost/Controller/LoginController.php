@@ -17,6 +17,7 @@ class LoginController extends MainController {
 
     public function login(){
         $this->view = new LoginView();
+        $this->view->add_render_vars(array("site"=>array("login"=>true)));
     }
 
     public function submit(){
@@ -49,5 +50,6 @@ class LoginController extends MainController {
         unset($_SESSION['user_id']);
 
         parent::frontpage(array());
+        $this->view->add_render_vars(array("site"=>array("home"=>true)));
     }
 }

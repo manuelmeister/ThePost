@@ -82,6 +82,7 @@ class MainController {
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
         $this->view = new FrontView($entries);
+        $this->view->add_render_vars(array("site"=>array("home"=>true)));
     }
 
 }

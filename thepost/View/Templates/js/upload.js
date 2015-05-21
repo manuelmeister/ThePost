@@ -1,7 +1,7 @@
 function upload(type, id){
     $("button.update").removeClass("btn-default").addClass("btn-primary");
     $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
-
+    $("span.update").text(" Updating");
 
 
     var title = $(".title").text();
@@ -20,7 +20,7 @@ function upload(type, id){
         success: function () {
             $("button.update").removeClass("btn-default").addClass("btn-success");
             $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-ok").text();
-
+            $("span.update").text(" Updated");
         },
         error: function () {
             $("button.update").removeClass("btn-default").addClass("btn-danger");

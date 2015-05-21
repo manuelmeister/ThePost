@@ -12,6 +12,7 @@
 <body class="container">
 <h1 class="container hidden-xs">{{ options.title }}</h1>
 {% block nav %}
+{% import 'macros.twig' as macro %}
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -25,16 +26,24 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             {% block navitems %}
-                <li class="active"><a href="/">Home</a></li>
+                <li class="{{ macro.active(site.home) }}"><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Add</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/">Eintrag</a></li>
+                    </ul>
+                </li>
+
+                <li class="{{ macro.active(site.settings) }}"><a href="/">Settings</a></li>
             {% endblock %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% block authentication %}
                 {% if authentication.login %}
                     <p class="navbar-text">Logged in as {{ authentication.username }}</p>
-                    <li><a href="/logout/" class="navbar-link">Logout</a></li>
+                    <li class="{{ macro.active(site.logout) }}"><a href="/logout/" class="navbar-link">Logout</a></li>
                 {% else %}
-                    <li><a href="/login/">Login</a></li>
+                    <li class="{{ macro.active(site.login) }}"><a href="/login/">Login</a></li>
                 {% endif %}
             {% endblock %}
         </ul>
