@@ -1,1 +1,6 @@
-Deny from all
+Options -Indexes
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !\.(css|js)$ [NC]
+RewriteRule .+ - [F,L]
