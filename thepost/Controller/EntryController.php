@@ -12,10 +12,10 @@ use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;
 
 /**
- * Class DefaultController
+ * Class MainController
  * @package ThePost\Controller
  */
-class EntryController extends DefaultController
+class EntryController extends MainController
 {
     /**
      * @param $param

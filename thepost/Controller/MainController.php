@@ -16,10 +16,10 @@ use ThePost\View\FrontView;
 use ThePost\View\View;
 
 /**
- * Class DefaultController
+ * Class MainController
  * @package ThePost\Controller
  */
-class DefaultController {
+class MainController {
 
     /**
      * @var Model

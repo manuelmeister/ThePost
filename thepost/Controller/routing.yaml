@@ -4,7 +4,7 @@
   method: "index"
 -
   match: "(^/upload/(?P<type>[a-z]+)/(?P<id>[0-9]+)/?$)"
-  controller: "UploadController"
+  controller: "UpdateController"
   method: "update"
 -
   match: "(^/login/$)"
@@ -20,7 +20,7 @@
   method: "logout"
 -
   match: "(^\/$)"
-  controller: "DefaultController"
+  controller: "MainController"
   method: "frontpage"
 -
   match: "(/?(?P<page>.*))"

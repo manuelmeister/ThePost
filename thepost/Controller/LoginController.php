@@ -13,7 +13,7 @@ use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\FrontView;
 use ThePost\View\LoginView;
 
-class LoginController extends DefaultController {
+class LoginController extends MainController {
 
     public function login(){
         $this->view = new LoginView();

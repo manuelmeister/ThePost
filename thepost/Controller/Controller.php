@@ -29,7 +29,7 @@ class Controller {
     private $request;
 
     /**
-     * @var DefaultController
+     * @var MainController
      */
     private $controller;
 
@@ -49,7 +49,7 @@ class Controller {
 
         $this->create_controller();
         $this->session_management();
-        if(!$this->controller instanceof UploadController){
+        if(!$this->controller instanceof CRUDController){
             $this->init_vars();
 
             echo $this->controller->view->render();

@@ -15,7 +15,7 @@ use ThePost\View\ErrorView;
  * Class ErrorController
  * @package ThePost\Controller
  */
-class ErrorController extends DefaultController {
+class ErrorController extends MainController {
 
     /**
      * @param $param
