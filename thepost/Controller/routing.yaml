@@ -3,21 +3,29 @@
   controller: "EntryController"
   method: "index"
 -
+  match: "(^/options/(?:(?:(?P<key>[0-9]+)/?$)))"
+  controller: "SettingsController"
+  method: "index"
+-
   match: "(^/upload/(?P<type>[a-z]+)/(?P<id>[0-9]+)/?$)"
   controller: "UpdateController"
   method: "update"
 -
-  match: "(^/login/$)"
+  match: "(^/login/?$)"
   controller: "LoginController"
   method: "login"
 -
-  match: "(^/login/submit/$)"
+  match: "(^/login/submit/?$)"
   controller: "LoginController"
   method: "submit"
 -
-  match: "(^/logout/$)"
+  match: "(^/logout/?$)"
   controller: "LoginController"
   method: "logout"
+-
+  match: "(^/settings/?$)"
+  controller: "SettingsController"
+  method: "settings"
 -
   match: "(^\/$)"
   controller: "MainController"
