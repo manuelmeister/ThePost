@@ -3,14 +3,27 @@
 {% block main %}
     {% if authentication.login %}
 
-        <form>
+        <div class="element clearfix">
         {% for setting in settings %}
-            <div class="form-group element">
+            <div class="form-group clearfix">
                 <label for="setting-{{ setting.key }}">{{ setting.key }}</label>
-                <input type="text" class="form-control" id="setting-{{ setting.key }}" value="{{ setting.value }}">
+                <div class="form-inline">
+                    <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" value="{{ setting.value }}">
+                    <button class="setting-{{ setting.key }} update btn btn-default" data-key="{{ setting.key }}" onclick="uploadOptions(this,'setting');">
+                        <span class="setting-{{ setting.key }} glyphicon glyphicon-floppy-open"></span>
+                        <span class="string-setting-{{ setting.key }} update"> Save</span>
+                    </button>
+                </div>
+
             </div>
         {% endfor %}
-        </form>
+            <button class="setting-all update btn btn-default" onclick="uploadOptionsAll('setting')">
+                <span class="setting-all glyphicon glyphicon-floppy-open"></span>
+                <span class="string-setting-all update"> Save all</span>
+            </button>
+        </div>
+
+
 
     {% else %}
         <article class="element entry clearfix">
@@ -23,4 +36,8 @@
             </div>
         </article>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/thepost/View/Templates/js/upload.js"></script>
 {% endblock %}

@@ -9,6 +9,7 @@
 namespace ThePost\Controller;
 
 use ThePost\Model\Repository\EntryRepository;
+use ThePost\Model\Repository\OptionRepository;
 use ThePost\View\EntryView;
 
 class UpdateController extends CRUDController
@@ -18,12 +19,26 @@ class UpdateController extends CRUDController
     {
         try {
             //TODO remove wait time
-            sleep(2);
 
-            $title = $_POST['title'];
-            $text = $_POST['text'];
-            $entry_repository = new EntryRepository($this->model->pdo);
-            $entry_repository->update(intval($param['id']), $title, $text);
+            //var_dump($param);
+            switch ($param['type']){
+                case 'entry':
+
+                    $title = $_POST['title'];
+                    $text = $_POST['text'];
+                    $entry_repository = new EntryRepository($this->model->pdo);
+                    $entry_repository->update(intval($param['slug']), $title, $text);
+                    sleep(1);
+                    break;
+                case 'setting':
+                    $key = $param['slug'];
+                    $value = $_POST['value'];
+                    $options_repository = new OptionRepository($this->model->pdo);
+                    $options_repository->update($key, $value);
+                    sleep(1);
+                    break;
+            }
+
 
 
         } catch (\Exception $e) {

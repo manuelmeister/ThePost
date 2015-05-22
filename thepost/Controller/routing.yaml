@@ -7,7 +7,7 @@
   controller: "SettingsController"
   method: "index"
 -
-  match: "(^/upload/(?P<type>[a-z]+)/(?P<id>[0-9]+)/?$)"
+  match: "(^/upload/(?P<type>[a-z]+)/(?P<slug>[A-z0-9_\-.]+)/?$)"
   controller: "UpdateController"
   method: "update"
 -

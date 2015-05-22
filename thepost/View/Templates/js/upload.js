@@ -1,4 +1,4 @@
-function upload(type, id){
+function uploadEntry(type, id){
     $("button.update").removeClass("btn-default").addClass("btn-primary");
     $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
     $("span.update").text(" Updating");
@@ -9,7 +9,7 @@ function upload(type, id){
     var data = {
         "title": title,
         "text": text
-    }
+    };
 
 
 
@@ -24,6 +24,36 @@ function upload(type, id){
         },
         error: function () {
             $("button.update").removeClass("btn-default").addClass("btn-danger");
+        }
+
+
+    });
+}
+
+function uploadOptions(type, key){
+    $("button.setting-"+key).removeClass("btn-default").addClass("btn-primary");
+    $("button.setting-"+key+" .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
+    $("span.string-setting-"+key).text(" Updating");
+
+
+    var value = $('.input-setting-'+key).val();
+    var data = {
+        "value": value
+    };
+
+
+
+    $.ajax({
+        type: 'POST',
+        url: '/upload/'+type+"/"+key,
+        data: data,
+        success: function () {
+            $("button.setting-"+key).removeClass("btn-default").addClass("btn-success");
+            $("button.setting-"+key+" .glyphicon").removeClass().addClass("glyphicon glyphicon-ok").text();
+            $("span.string-setting-"+key).text(" Updated");
+        },
+        error: function () {
+            $("button.setting-"+key).removeClass("btn-*").addClass("btn-danger");
         }
 
 

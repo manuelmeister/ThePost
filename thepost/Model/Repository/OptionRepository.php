@@ -47,14 +47,15 @@ class OptionRepository {
 
 
     /**
-     * @param $id int
-     * @param $title String
-     * @param $text String
+     * @param $key
+     * @param $value
      */
     public function update($key, $value){
-        $stmt = $this->pdo->prepare("UPDATE Options SET 'value'=':value' WHERE 'key'=':key';");
-        $stmt->bindParam(':value',$value);
-        $stmt->bindParam(':key',$key);
-        $stmt->execute();
+        var_dump($key);
+        var_dump($value);
+        $stmt = $this->pdo->prepare('UPDATE Options SET `value`=:str_value WHERE `key`=:str_key;');
+        $stmt->bindParam(':str_value',$value);
+        $stmt->bindParam(':str_key',$key);
+        var_dump($stmt->execute());
     }
 }
