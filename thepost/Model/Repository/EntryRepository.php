@@ -35,10 +35,8 @@ class EntryRepository {
      * @return Entry
      */
     public function findByParam($param){
-        $param = $param;
-        $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:id OR slug=:param LIMIT 1');
-        $stmt->bindParam(":id",$param);
-        $stmt->bindParam(":slug",$param);
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:param OR slug=:param LIMIT 1');
+        $stmt->bindParam(":param",$param);
         $stmt->execute();
         return $stmt->fetchObject('ThePost\Model\Entity\Entry');
     }
