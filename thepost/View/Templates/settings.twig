@@ -1,0 +1,26 @@
+{% extends "index.twig" %}
+
+{% block main %}
+    {% if authentication.login %}
+
+        <form>
+        {% for setting in settings %}
+            <div class="form-group element">
+                <label for="setting-{{ setting.key }}">{{ setting.key }}</label>
+                <input type="text" class="form-control" id="setting-{{ setting.key }}" value="{{ setting.value }}">
+            </div>
+        {% endfor %}
+        </form>
+
+    {% else %}
+        <article class="element entry clearfix">
+            <h2>Error</h2>
+
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                You have to be logged in to access these settings!
+            </div>
+        </article>
+    {% endif %}
+{% endblock %}
