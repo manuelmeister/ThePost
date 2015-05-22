@@ -9,7 +9,7 @@
             {% block main %}
                 {% for entry in entries %}
                     <article class="element entry clearfix" id="entry-{{ entry.id }}">
-                        <h2><a href="/entry/{{ entry.id }}">{{ entry.title }}</a></h2>
+                        <h2><a href="/entry/{{ entry.slug }}">{{ entry.title }}</a></h2>
 
                         <div>{{ entry.content|raw }}</div>
                     </article>
