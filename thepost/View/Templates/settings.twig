@@ -9,7 +9,7 @@
                 <label for="setting-{{ setting.key }}">{{ setting.key }}</label>
                 <div class="form-inline">
                     <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" value="{{ setting.value }}">
-                    <button class="setting-{{ setting.key }} update btn btn-default" data-key="{{ setting.key }}" onclick="uploadOptions(this,'setting');">
+                    <button class="setting-{{ setting.key }} update btn btn-default" onclick="uploadOptions('setting','{{ setting.key }}');">
                         <span class="setting-{{ setting.key }} glyphicon glyphicon-floppy-open"></span>
                         <span class="string-setting-{{ setting.key }} update"> Save</span>
                     </button>
