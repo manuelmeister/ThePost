@@ -71,7 +71,7 @@ class MainController {
 
         foreach ($options as $option) {
             /** @var ThePost/Model/Entity/Options $option */
-            $this->options_array[$option->getKey()] = utf8_encode($option->getValue());
+            $this->options_array[$option->getKey()] = $option->getValue();
         }
     }
 
