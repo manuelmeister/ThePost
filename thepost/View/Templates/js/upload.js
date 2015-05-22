@@ -4,8 +4,8 @@ function upload(type, id){
     $("span.update").text(" Updating");
 
 
-    var title = $(".title").text();
-    var text = $(".text").text();
+    var title = $("h2.title.onedit").text();
+    var text = $('.summernote').code();
     var data = {
         "title": title,
         "text": text
