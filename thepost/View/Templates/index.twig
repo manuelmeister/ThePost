@@ -1,3 +1,7 @@
+{% include 'head.twig' %}
+{% block styles %}
+    <link rel="stylesheet" href="/thepost/View/Templates/css/style.css"/>
+{% endblock %}
 {% include 'header.twig' %}
 <div class="container-fluid">
     <div class="content row">
@@ -7,7 +11,7 @@
                     <article class="element entry clearfix" id="entry-{{ entry.id }}">
                         <h2><a href="/entry/{{ entry.id }}">{{ entry.title }}</a></h2>
 
-                        <p>{{ entry.excerpt }}</p>
+                        <div>{{ entry.content|raw }}</div>
                     </article>
                 {% endfor %}
             {% endblock %}

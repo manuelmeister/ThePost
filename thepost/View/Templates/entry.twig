@@ -1,13 +1,17 @@
 {% extends "index.twig" %}
 
+{% block styles %}
+    <link rel="stylesheet" href="/thepost/View/Templates/css/style-summernote.css"/>
+{% endblock %}
+
 {% block main %}
 
     <article class="element entry clearfix" id="entry-{{ entry.id }}">
 
         {% if authentication.login %}
 
-            <h2 class="title" contenteditable="true">{{ entry.title }}</h2>
-            <p class="text" contenteditable="true">{{ entry.content }}</p>
+            <h2 class="title onedit" contenteditable="true">{{ entry.title }}</h2>
+            <div class="text onedit summernote"></div>
             <button class="update btn btn-default pull-right" onclick="upload('entry',{{ entry.id }})">
                 <span class="glyphicon glyphicon-floppy-open"></span>
                 <span class="update"> Update</span>
@@ -15,8 +19,8 @@
 
             {# glyphicon-floppy-open #}
         {% else %}
-            <h2 class="title" >{{ entry.title }}</h2>
-            <p class="text">{{ entry.content }}</p>
+            <h2 class="title">{{ entry.title }}</h2>
+            <div class="text">{{ entry.content|raw }}</div>
         {% endif %}
 
     </article>
@@ -25,4 +29,10 @@
 
 {% block scripts %}
     <script src="/thepost/View/Templates/js/upload.js"></script>
+    <script src="/thepost/View/Templates/js/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote().code('{{ entry.content|raw }}');
+        });
+    </script>
 {% endblock %}

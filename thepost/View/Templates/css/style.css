@@ -31,6 +31,10 @@ h1{
     background: white;
 }
 
+.note-editor{
+    margin-bottom: 10px;
+}
+
 .glyphicon-refresh-animate {
     -webkit-animation: rotate 1s linear infinite;
     -o-animation: rotate 1s linear infinite;
