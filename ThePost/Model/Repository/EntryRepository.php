@@ -64,7 +64,6 @@ class EntryRepository {
         $purifier_config = HTMLPurifier_Config::createDefault();
         $purifier_config->set('Core.Encoding', 'UTF-8'); // replace with your encoding
         $purifier_config->set('HTML.Doctype', 'HTML 4.01 Transitional');
-        $purifier_config->set('CSS.Trusted', true); // allow any css
         $purifier_config->set('CSS.MaxImgLength', null); // allow any css
         $purifier_config->set('HTML.MaxImgLength', null); // allow any css
         $purifier = new HTMLPurifier($purifier_config);
