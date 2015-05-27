@@ -22,6 +22,10 @@ h1{
     margin-bottom: 20px;
 }
 
+.entry img {
+    max-width: 100%;
+}
+
 .option {
     margin-bottom: 20px;
 }
