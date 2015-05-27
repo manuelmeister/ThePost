@@ -6,7 +6,7 @@
  * Time: 12:49
  */
 
-namespace ThePost\Controller;
+namespace ThePost\Controller\Output;
 
 
 use ThePost\Model\Repository\EntryRepository;

@@ -6,7 +6,7 @@
  * Time: 14:21
  */
 
-namespace ThePost\Controller;
+namespace ThePost\Controller\CRUD;
 
 
 class CRUDController extends MainController {

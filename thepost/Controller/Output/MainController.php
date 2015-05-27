@@ -6,7 +6,7 @@
  * Time: 00:25
  */
 
-namespace ThePost\Controller;
+namespace ThePost\Controller\Output;
 
 
 use ThePost\Model\Entity\User;

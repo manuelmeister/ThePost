@@ -6,11 +6,9 @@
  * Time: 09:31
  */
 
-namespace ThePost\Controller;
+namespace ThePost\Controller\CRUD;
 
 use ThePost\Model\Repository\EntryRepository;
-use ThePost\Model\Repository\OptionRepository;
-use ThePost\View\EntryView;
 
 class UpdateController extends CRUDController
 {

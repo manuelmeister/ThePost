@@ -6,7 +6,7 @@
  * Time: 16:44
  */
 
-namespace ThePost\Controller;
+namespace ThePost\Controller\Output;
 
 use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;

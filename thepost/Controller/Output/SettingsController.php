@@ -6,14 +6,10 @@
  * Time: 08:07
  */
 
-namespace thepost\Controller;
+namespace thepost\Controller\Output;
 
-
-
-
-use ThePost\Model\Repository\OptionRepository;
-use ThePost\View\SettingsView;
-use ThePost\Controller\MainController;
+use thepost\Model\Repository\OptionRepository;
+use thepost\View\SettingsView;
 
 class SettingsController extends MainController {
 
@@ -22,11 +18,6 @@ class SettingsController extends MainController {
         $options = $options_repository->findAll();
         $this->view = new SettingsView($options);
         $this->view->add_render_vars(array("site"=>array("settings"=>true)));
-
-
-
-
-
     }
 
 }

@@ -1,36 +1,32 @@
 -
   match: "(^/entry/(?:(?:(?P<id>[0-9]+)/?$)|(?:(?P<slug>[A-z0-9_\-.]+)/?$))?)"
-  controller: "EntryController"
-  method: "index"
--
-  match: "(^/options/(?:(?:(?P<key>[0-9]+)/?$)))"
-  controller: "SettingsController"
+  controller: "Output\EntryController"
   method: "index"
 -
   match: "(^/upload/(?P<type>[a-z]+)/(?P<slug>[A-z0-9_\-.]+)/?$)"
-  controller: "UpdateController"
+  controller: "CRUD\UpdateController"
   method: "update"
 -
   match: "(^/login/?$)"
-  controller: "LoginController"
+  controller: "Output\LoginController"
   method: "login"
 -
   match: "(^/login/submit/?$)"
-  controller: "LoginController"
+  controller: "Output\LoginController"
   method: "submit"
 -
   match: "(^/logout/?$)"
-  controller: "LoginController"
+  controller: "Output\LoginController"
   method: "logout"
 -
   match: "(^/settings/?$)"
-  controller: "SettingsController"
+  controller: "Output\SettingsController"
   method: "settings"
 -
   match: "(^\/$)"
-  controller: "MainController"
+  controller: "Output\MainController"
   method: "frontpage"
 -
   match: "(/?(?P<page>.*))"
-  controller: "ErrorController"
+  controller: "Output\ErrorController"
   method: "frontpage"
