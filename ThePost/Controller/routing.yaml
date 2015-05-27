@@ -27,6 +27,10 @@
   controller: "Output\SettingsController"
   method: "settings"
 -
+  match: "(^/install/?$)"
+  controller: "Output\InstallController"
+  method: "install"
+-
   match: "(^\/$)"
   controller: "Output\MainController"
   method: "frontpage"
