@@ -18,7 +18,7 @@ class UpdateController extends CRUDController
     {
         try {
             //TODO remove wait time
-
+            if($this->authentication->isLogin()){
             //var_dump($param);
             switch ($param['type']){
                 case 'entry':
@@ -37,7 +37,9 @@ class UpdateController extends CRUDController
             }
             sleep(1);
 
-
+            }else{
+                throw new \Exception("You are not logged in.");
+            }
 
         } catch (\Exception $e) {
             header("HTTP/1.0 404 Not Found");
