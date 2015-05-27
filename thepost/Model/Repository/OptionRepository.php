@@ -6,7 +6,7 @@
  * Time: 08:25
  */
 
-namespace thepost\Model\Repository;
+namespace ThePost\Model\Repository;
 use ThePost\Model\Entity\Options;
 
 class OptionRepository {

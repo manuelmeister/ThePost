@@ -6,9 +6,7 @@
  * Time: 08:09
  */
 
-namespace thepost\View;
-
-use ThePost\View\View;
+namespace ThePost\View;
 
 class SettingsView extends View {
 

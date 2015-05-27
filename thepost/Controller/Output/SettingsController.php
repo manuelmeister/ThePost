@@ -6,10 +6,10 @@
  * Time: 08:07
  */
 
-namespace thepost\Controller\Output;
+namespace ThePost\Controller\Output;
 
-use thepost\Model\Repository\OptionRepository;
-use thepost\View\SettingsView;
+use ThePost\Model\Repository\OptionRepository;
+use ThePost\View\SettingsView;
 
 class SettingsController extends MainController {
 

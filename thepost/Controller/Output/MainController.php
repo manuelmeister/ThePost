@@ -8,7 +8,6 @@
 
 namespace ThePost\Controller\Output;
 
-
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\EntryRepository;

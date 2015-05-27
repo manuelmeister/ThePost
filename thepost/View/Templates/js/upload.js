@@ -30,7 +30,8 @@ function uploadEntry(type, id){
     });
 }
 
-function uploadOptions(type, key){
+function uploadOptions(type, key, event){
+    event.preventDefault();
     $("button.setting-"+key).removeClass("btn-default").addClass("btn-primary");
     $("button.setting-"+key+" .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
     $("span.string-setting-"+key).text(" Updating");

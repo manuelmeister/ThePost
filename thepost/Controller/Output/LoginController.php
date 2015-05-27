@@ -8,9 +8,6 @@
 
 namespace ThePost\Controller\Output;
 
-
-use ThePost\Model\Repository\EntryRepository;
-use ThePost\View\FrontView;
 use ThePost\View\LoginView;
 
 class LoginController extends MainController {

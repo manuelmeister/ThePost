@@ -3,13 +3,13 @@
 {% block main %}
     {% if authentication.login %}
 
-        <div class="element clearfix">
+        <form class="element clearfix" action="/settings/submit" method="post">
         {% for setting in settings %}
             <div class="form-group clearfix">
                 <label for="setting-{{ setting.key }}">{{ setting.key }}</label>
                 <div class="form-inline">
-                    <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" value="{{ setting.value }}">
-                    <button class="setting-{{ setting.key }} update btn btn-default" onclick="uploadOptions('setting','{{ setting.key }}');">
+                    <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" name="setting-{{ setting.key }}" value="{{ setting.value }}">
+                    <button class="setting-{{ setting.key }} update btn btn-default" onclick="uploadOptions('setting','{{ setting.key }}',event);">
                         <span class="setting-{{ setting.key }} glyphicon glyphicon-floppy-open"></span>
                         <span class="string-setting-{{ setting.key }} update"> Save</span>
                     </button>
@@ -17,11 +17,11 @@
 
             </div>
         {% endfor %}
-            <button class="setting-all update btn btn-default" onclick="uploadOptionsAll('setting')">
+            <button class="setting-all update btn btn-default" type="submit">
                 <span class="setting-all glyphicon glyphicon-floppy-open"></span>
                 <span class="string-setting-all update"> Save all</span>
             </button>
-        </div>
+        </form>
 
 
 
@@ -39,5 +39,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/thepost/View/Templates/js/upload.js"></script>
+<script src="/ThePost/View/Templates/js/upload.js"></script>
 {% endblock %}

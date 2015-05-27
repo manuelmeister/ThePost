@@ -1,7 +1,7 @@
 {% extends "index.twig" %}
 
 {% block styles %}
-    <link rel="stylesheet" href="/thepost/View/Templates/css/style-summernote.css"/>
+    <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>
 {% endblock %}
 
 {% block main %}
@@ -28,8 +28,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="/thepost/View/Templates/js/upload.js"></script>
-    <script src="/thepost/View/Templates/js/summernote.min.js"></script>
+    <script src="/ThePost/View/Templates/js/upload.js"></script>
+    <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.summernote').summernote().code('{{ entry.content|raw }}');

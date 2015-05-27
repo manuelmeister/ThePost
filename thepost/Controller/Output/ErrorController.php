@@ -8,7 +8,6 @@
 
 namespace ThePost\Controller\Output;
 
-
 use ThePost\View\ErrorView;
 
 /**

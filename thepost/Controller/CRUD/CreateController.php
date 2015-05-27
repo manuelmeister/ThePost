@@ -8,7 +8,6 @@
 
 namespace ThePost\Controller\CRUD;
 
-
 class CreateController extends CRUDController
 {
 
