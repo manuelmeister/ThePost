@@ -9,6 +9,7 @@
 namespace ThePost\Controller\CRUD;
 
 use ThePost\Model\Repository\EntryRepository;
+use ThePost\Model\Repository\OptionRepository;
 
 class UpdateController extends CRUDController
 {
@@ -26,16 +27,15 @@ class UpdateController extends CRUDController
                     $text = $_POST['text'];
                     $entry_repository = new EntryRepository($this->model->pdo);
                     $entry_repository->update(intval($param['slug']), $title, $text);
-                    sleep(1);
                     break;
                 case 'setting':
                     $key = $param['slug'];
                     $value = $_POST['value'];
                     $options_repository = new OptionRepository($this->model->pdo);
                     $options_repository->update($key, $value);
-                    sleep(1);
                     break;
             }
+            sleep(1);
 
 
 
