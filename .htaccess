@@ -3,3 +3,9 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ /index.php [QSA,L]
+
+<FilesMatch "\.(js|css)$">
+        FileETag None
+        Header set Cache-Control "max-age=604800, public, must-revalidate"
+        Header set Expires "Thu, 30 Jun 2015 20:00:00 GMT"
+</FilesMatch>
