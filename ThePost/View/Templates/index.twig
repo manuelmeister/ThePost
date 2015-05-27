@@ -1,0 +1,34 @@
+{% include 'head.twig' %}
+{% block styles %}
+    <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
+{% endblock %}
+{% include 'header.twig' %}
+<div class="container-fluid">
+    <div class="content row">
+        <main class="main col-md-8">
+            {% block main %}
+                {% for entry in entries %}
+                    <article class="element entry clearfix" id="entry-{{ entry.id }}">
+                        <h2><a href="/entry/{{ entry.slug }}">{{ entry.title }}</a></h2>
+
+                        <div>{{ entry.content|raw }}</div>
+                    </article>
+                {% endfor %}
+            {% endblock %}
+        </main>
+        {% block sidebar %}
+            <aside class="col-md-4 hidden-sm hidden-xs">
+                <article class="element widget" id="widget">
+                    <h3>Blubdiblu</h3>
+
+                    <p>fugedifagott</p>
+                </article>
+            </aside>
+        {% endblock %}
+    </div>
+</div>
+{% include 'footer.twig' %}
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
