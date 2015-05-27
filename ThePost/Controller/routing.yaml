@@ -19,6 +19,10 @@
   controller: "Output\LoginController"
   method: "logout"
 -
+  match: "(^/settings/submit/?$)"
+  controller: "Output\SettingsController"
+  method: "saveAll"
+-
   match: "(^/settings/?$)"
   controller: "Output\SettingsController"
   method: "settings"

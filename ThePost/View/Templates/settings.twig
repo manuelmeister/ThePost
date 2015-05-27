@@ -8,7 +8,7 @@
             <div class="form-group clearfix">
                 <label for="setting-{{ setting.key }}">{{ setting.key }}</label>
                 <div class="form-inline">
-                    <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" name="setting-{{ setting.key }}" value="{{ setting.value }}">
+                    <input type="text" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" name="settings[{{ setting.key }}]" value="{{ setting.value }}">
                     <button class="setting-{{ setting.key }} update btn btn-default" onclick="uploadOptions('setting','{{ setting.key }}',event);">
                         <span class="setting-{{ setting.key }} glyphicon glyphicon-floppy-open"></span>
                         <span class="string-setting-{{ setting.key }} update"> Save</span>

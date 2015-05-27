@@ -20,4 +20,17 @@ class SettingsController extends MainController {
         $this->view->add_render_vars(array("site"=>array("settings"=>true)));
     }
 
+    public function saveAll(){
+        $settings = $_POST['settings'];
+        $options_repository = new OptionRepository($this->model->pdo);
+
+        foreach ($settings as $key => $value) {
+            $options_repository->update($key,$value);
+        }
+
+        $options = $options_repository->findAll();
+        $this->view = new SettingsView($options);
+        $this->view->add_render_vars(array("site"=>array("settings"=>true)));
+    }
+
 }
