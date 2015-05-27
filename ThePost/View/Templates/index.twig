@@ -1,7 +1,4 @@
 {% include 'head.twig' %}
-{% block styles %}
-    <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
-{% endblock %}
 {% include 'header.twig' %}
 <div class="container-fluid">
     <div class="content row">
@@ -28,7 +25,14 @@
     </div>
 </div>
 {% include 'footer.twig' %}
-{% block scripts %}
-{% endblock %}
 </body>
 </html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+{% block styles %}
+    <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
+{% endblock %}
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{% block scripts %}
+{% endblock %}
