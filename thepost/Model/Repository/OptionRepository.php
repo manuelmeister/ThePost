@@ -25,7 +25,7 @@ class OptionRepository {
 
     /**
      * this functions finds an Entry by its ID
-     * @param $param
+     * @param $key
      * @return Options
      */
     public function findByParam($key){
