@@ -1,8 +1,12 @@
 {% extends "index.twig" %}
 
-{% block styles %}
-    <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>
-{% endblock %}
+    {% block styles %}
+        {% if authentication.login %}
+            <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>
+        {% else %}
+            <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
+        {% endif %}
+    {% endblock %}
 
 {% block main %}
 
@@ -31,7 +35,7 @@
     <script src="/ThePost/View/Templates/js/upload.js"></script>
     <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.summernote').summernote().code('{{ entry.content|raw }}');
         });
     </script>
