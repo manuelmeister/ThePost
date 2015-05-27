@@ -21,12 +21,17 @@ class SettingsController extends MainController {
     }
 
     public function saveAll(){
-        $settings = $_POST['settings'];
         $options_repository = new OptionRepository($this->model->pdo);
 
-        foreach ($settings as $key => $value) {
-            $options_repository->update($key,$value);
+        if(isset($_POST['settings'])){
+            $settings = $_POST['settings'];
+
+            foreach ($settings as $key => $value) {
+                $options_repository->update($key,$value);
+            }
         }
+
+        $this->get_options();
 
         $options = $options_repository->findAll();
         $this->view = new SettingsView($options);

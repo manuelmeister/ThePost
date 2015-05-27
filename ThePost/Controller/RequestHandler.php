@@ -35,7 +35,7 @@ class RequestHandler {
      */
     function __construct($uri)
     {
-        $this->uri = $uri;
+        $this->uri = mb_split('\?',$uri)[0];
         $this->routing_table = \Spyc::YAMLLoadString(file_get_contents(__DIR__.'/routing.yaml'));
         $this->setRoute();
     }
