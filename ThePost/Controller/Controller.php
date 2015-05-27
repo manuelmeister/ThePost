@@ -49,6 +49,7 @@ class Controller {
 
         session_start();
 
+        $this->session_management();
         $this->create_controller();
         $this->session_management();
         if(!$this->controller instanceof CRUDController){
@@ -95,6 +96,7 @@ class Controller {
 
         //THE MAGIC: a new controller is instantiated using the string containing the namespace and name of the Controller
         $this->controller = new $controller($this->model);
+        $this->controller->set_authentication($this->user);
         $this->controller->$method($param);
     }
 
