@@ -26,10 +26,10 @@ class EntryController extends MainController
     {
         $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
         $entries_repository = new EntryRepository($this->model->pdo);
-        if (!$entry = $entries_repository->findByParam($param)) {
-            throw new \Exception("Entry $param not found!");
-        } else {
+        if ($entry = $entries_repository->findByParam($param)) {
             $this->view = new EntryView($entry);
+        } else {
+            throw new \Exception("Entry $param not found!");
         }
     }
 
