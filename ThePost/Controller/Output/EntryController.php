@@ -8,6 +8,7 @@
 
 namespace ThePost\Controller\Output;
 
+use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;
 
@@ -18,17 +19,15 @@ use ThePost\View\EntryView;
 class EntryController extends MainController
 {
     /**
-     * @param $param
+     * @param $input
      */
-    public function index($param)
+    public function index($input)
     {
-        $stmt = $this->model->pdo->prepare('SELECT * FROM Entry WHERE id=:param OR slug=:param;');
-        $stmt->bindValue(':param', (isset($param['slug']))?$param['slug']:$param['id']);
-        $stmt->execute();
-        if($stmt->rowCount()<1){
-            $this->view = new EntryErrorView(array('msg' => (isset($param['slug']))?$param['slug']:$param['id']));
-        }else{
-            $entry = $stmt->fetchObject('ThePost\Model\Entity\Entry');
+        $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
+        $entries_repository = new EntryRepository($this->model->pdo);
+        if (!$entry = $entries_repository->findByParam($param)) {
+            $this->view = new EntryErrorView(array('page' => $param, 'msg' => 'not found!'));
+        } else {
             $this->view = new EntryView($entry);
         }
     }
