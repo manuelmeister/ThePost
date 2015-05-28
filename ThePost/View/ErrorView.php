@@ -11,12 +11,13 @@ namespace ThePost\View;
 
 class ErrorView extends View{
 
-    function __construct($type,$page = '',$param)
+    function __construct($type,$page,$param)
     {
         parent::__construct();
 
         $this->render_vars['error'] = array(
-            'msg'   =>  $param
+            'msg'   =>  $param,
+            'page'  =>  $page
         );
 
         $this->render_vars['type'] = $type;
