@@ -9,7 +9,7 @@
                     <label for="setting-{{ setting.key }}">{{ setting.title }}</label>
 
                     <div class="form-inline">
-                        <input type="text" class="input-setting-{{ setting.key }} form-control"
+                        <input type="{{ setting.type }}" class="input-setting-{{ setting.key }} form-control"
                                id="setting-{{ setting.key }}" name="settings[{{ setting.key }}]"
                                value="{{ setting.value }}">
                         <button class="setting-{{ setting.key }} update btn btn-default"
