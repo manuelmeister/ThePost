@@ -20,13 +20,14 @@ class EntryController extends MainController
 {
     /**
      * @param $input
+     * @throws \Exception
      */
     public function index($input)
     {
         $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
         $entries_repository = new EntryRepository($this->model->pdo);
         if (!$entry = $entries_repository->findByParam($param)) {
-            $this->view = new EntryErrorView(array('page' => $param, 'msg' => 'not found!'));
+            throw new \Exception("Entry $param not found!");
         } else {
             $this->view = new EntryView($entry);
         }
