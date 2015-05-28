@@ -32,6 +32,12 @@
 {% block styles %}
     <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
 {% endblock %}
+<style>
+    /* User Styles */
+    body{
+        background-color: {{ options.style_backgroundcolor }};
+    }
+</style>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% block scripts %}
