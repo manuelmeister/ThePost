@@ -34,7 +34,7 @@ class EntryRepository {
     /**
      * this functions finds an Entry by its ID
      * @param $param
-     * @return Entry
+     * @return mixed
      */
     public function findByParam($param){
         $stmt = $this->pdo->prepare('SELECT * FROM Entry WHERE id=:param OR slug=:param LIMIT 1');
