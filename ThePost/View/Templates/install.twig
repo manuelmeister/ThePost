@@ -1,0 +1,131 @@
+<html lang="de_CH">
+<head>
+    <title>Your Blog</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="container">
+<div class="container-fluid">
+    <div class="content row">
+        <main class="main col-md-8">
+            <form class="element">
+                <h1>Install</h1>
+
+                <p>Here you can set the basic settings.</p>
+                <section class="section">
+                    <h2>Database</h2>
+
+                    <p>Please type in your database authentication.</p>
+
+                    <p class="alert alert-warning">Currently only MySQL with InnoDB is supported.</p>
+
+                    <div class="form-group">
+                        <label for="database_location">Database Location</label>
+                        <input type="text" class="form-control" id="database_location" name="database[location]"
+                               placeholder="Database Location" value="localhost">
+
+                        <p class="help-block">Enter the address of your database, if you host your database among your
+                            webhost, use "localhost".</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="database_port">Database Port</label>
+                        <input type="number" class="form-control" id="database_port" name="database[port]" value="3306">
+
+                        <p class="help-block">Enter the port of your database. Normally the port is 3306 </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="database_username">Database User</label>
+                        <input type="text" class="form-control" id="database_username" name="database[username]"
+                               placeholder="Database User">
+
+                        <p class="help-block">Please type in your database authentication.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="database_name">Database Name</label>
+                        <input type="text" class="form-control" id="database_name" name="database[name]"
+                               placeholder="Database Name">
+
+                        <p class="help-block">Your database needs CREATE, INSERT, UPDATE and DELETE permission.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="database_password">Database Password</label>
+                        <input type="password" class="form-control" id="database_password" name="database[password]"
+                               placeholder="Database Password">
+
+                        <p class="help-block">Please type in your database password.</p>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2>Information</h2>
+
+                    <div class="form-group">
+                        <label for="title">Blog Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Blog Title">
+
+                        <p class="help-block">The title/logo of your blog.</p>
+                    </div>
+                    <h3>Welcome Widget</h3>
+                    <p>The title of the right </p>
+                    <div class="form-group">
+                        <label for="welcome_title">Welcome Widget Title</label>
+                        <input type="text" class="form-control" id="welcome_title" name="welcome_title"
+                               placeholder="Welcome Widget Title">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="welcome_content">Welcome Widget Content</label>
+                        <textarea class="form-control" id="welcome_content" name="welcome_content"
+                               placeholder="Welcome Widget Content"></textarea>
+
+                    </div>
+                </section>
+                <section class="section">
+                    <h2>Styles</h2>
+
+                    <p class="bs-callout bs-callout-warning" role="alert">Don't be afraid :). You can still set these
+                        settings later.</p>
+                    <div class="form-group">
+                        <label for="style_backgroundcolor">Background Color</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><input type="color" class="color" id="style_backgroundcolor" name="style_backgroundcolor" value="#EFEFEF" onchange="$('#style_backgroundcolor_text').val($(this).val())"></span>
+                            <input type="text" class="form-control" id="style_backgroundcolor_text" name="style_backgroundcolor_text" value="#EFEFEF" onchange="$('#style_backgroundcolor').val($(this).val())">
+                        </div>
+                        <p class="help-block">Background color.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="style_backgroundcolor">Heading 2 font color.</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color" name="style_h2color" value="#3873de" onchange="$('#style_h2color_text').val($(this).val())"></span>
+                            <input type="text" class="form-control" id="style_h2color_text" name="style_h2color_text" value="#3873de" onchange="$('#style_h2color').val($(this).val())">
+                        </div>
+                        <p class="help-block">The font color of <code>&lt;h2&gt;</code> Heading 2 font color.</p>
+                    </div>
+                </section>
+
+            </form>
+        </main>
+        <aside class="col-md-4 hidden-sm hidden-xs">
+            <article class="element widget" id="widget">
+                <h3>Willkommen </h3>
+
+                <p>Das ist dein Blog.</p>
+            </article>
+        </aside>
+    </div>
+</div>
+<footer class="container">
+    © Post CH AG
+</footer>
+</body>
+</html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/ThePost/View/Templates/css/style.css">
+<style>
+    /* User Styles */
+    body {
+        background-color: #EFEFEF;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
