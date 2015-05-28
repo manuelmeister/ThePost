@@ -10,11 +10,18 @@ namespace ThePost\Controller\CRUD;
 
 use ThePost\Model\Repository\EntryRepository;
 use ThePost\Model\Repository\OptionRepository;
-use ThePost\View\ErrorView;
 
+/**
+ * Class UpdateController
+ * @package ThePost\Controller\CRUD
+ */
 class UpdateController extends CRUDController
 {
 
+    /**
+     * @param $param
+     * @throws \Exception
+     */
     public function update($param)
     {
         try {
@@ -48,10 +55,7 @@ class UpdateController extends CRUDController
 
         } catch (\Exception $e) {
             header("HTTP/1.0 404 Not Found");
-            $this->view = new ErrorView('Error: ', '', $e->getMessage());
-            $this->get_options();
-            $this->view_set_vars();
-            echo $this->view->render();
+            throw new \Exception($e->getMessage());
         }
     }
 }
