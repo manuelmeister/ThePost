@@ -13,6 +13,7 @@ use ThePost\Controller\CRUD\CRUDController;
 use ThePost\Controller\Output\MainController;
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
+use ThePost\Model\Repository\UserRepository;
 
 /**
  * Class Controller
@@ -66,14 +67,10 @@ class Controller {
 
         if(isset($_SESSION['user_id'])){
 
-            //:id is a placeholder for the id given in bindParam()
-            $stmt = $this->model->pdo->prepare('SELECT id,email,username FROM `User` WHERE id =:id LIMIT 1;');
-            $stmt->bindParam(':id',$_SESSION['user_id'],\PDO::PARAM_INT);
-            $stmt->execute();
-            //fill model with data from database
-            $this->user = $stmt->fetchObject('ThePost\Model\Entity\User');
-
+            $user_repository = new UserRepository($this->model->pdo);
+            $this->user = $user_repository->findUserByID($_SESSION['user_id']);
             $this->user->setLogin(true);
+
         }else{
 
             $this->user = new User();
@@ -105,7 +102,7 @@ class Controller {
      */
     private function init_vars(){
         $this->controller->set_authentication($this->user);
-        $this->controller->set_vars();
+        $this->controller->view_set_vars();
     }
 
 }
