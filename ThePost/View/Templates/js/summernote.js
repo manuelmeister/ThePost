@@ -3430,101 +3430,6 @@
       }
     };
 
-    /**
-     * @method bold
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method italic
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method underline
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method strikethrough
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method formatBlock
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method superscript
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method subscript
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method justifyLeft
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method justifyCenter
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method justifyRight
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method justifyFull
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method formatBlock
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method removeFormat
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method backColor
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method foreColor
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
-
-    /**
-     * @method insertHorizontalRule
-     * @param {jQuery} $editable
-     * @param {Mixed} value
-     */
 
     /**
      * @method fontName
@@ -5992,38 +5897,6 @@
       };
 
       var tplImagePopover = function () {
-        var fullButton = tplButton('<span class="note-fontsize-10">100%</span>', {
-          title: lang.image.resizeFull,
-          event: 'resize',
-          value: '1'
-        });
-        var halfButton = tplButton('<span class="note-fontsize-10">50%</span>', {
-          title: lang.image.resizeHalf,
-          event: 'resize',
-          value: '0.5'
-        });
-        var quarterButton = tplButton('<span class="note-fontsize-10">25%</span>', {
-          title: lang.image.resizeQuarter,
-          event: 'resize',
-          value: '0.25'
-        });
-
-        var leftButton = tplIconButton(options.iconPrefix + 'align-left', {
-          title: lang.image.floatLeft,
-          event: 'floatMe',
-          value: 'left'
-        });
-        var rightButton = tplIconButton(options.iconPrefix + 'align-right', {
-          title: lang.image.floatRight,
-          event: 'floatMe',
-          value: 'right'
-        });
-        var justifyButton = tplIconButton(options.iconPrefix + 'align-justify', {
-          title: lang.image.floatNone,
-          event: 'floatMe',
-          value: 'none'
-        });
-
         var roundedButton = tplIconButton(options.iconPrefix + 'unchecked', {
           title: lang.image.shapeRounded,
           event: 'imageShape',
@@ -6051,9 +5924,7 @@
           value: 'none'
         });
 
-        var content = '<div class="btn-group">' + fullButton + halfButton + quarterButton + '</div>' +
-                      '<div class="btn-group">' + leftButton + rightButton + justifyButton + '</div>' +
-                      '<div class="btn-group">' + roundedButton + circleButton + thumbnailButton + noneButton + '</div>' +
+          var content = '<div class="btn-group">' + roundedButton + circleButton + thumbnailButton + noneButton + '</div>' +
                       '<div class="btn-group">' + removeButton + '</div>';
         return tplPopover('note-image-popover', content);
       };
@@ -6092,11 +5963,6 @@
     var tplHandles = function () {
       return '<div class="note-handle">' +
                '<div class="note-control-selection">' +
-                 '<div class="note-control-selection-bg"></div>' +
-                 '<div class="note-control-holder note-control-nw"></div>' +
-                 '<div class="note-control-holder note-control-ne"></div>' +
-                 '<div class="note-control-holder note-control-sw"></div>' +
-                 '<div class="note-control-sizing note-control-se"></div>' +
                  '<div class="note-control-selection-info"></div>' +
                '</div>' +
              '</div>';
@@ -6211,19 +6077,6 @@
 
     var tplDialogInfo = {
       image: function (lang, options) {
-        /*var imageLimitation = '';
-        if (options.maximumImageFileSize) {
-          var unit = Math.floor(Math.log(options.maximumImageFileSize) / Math.log(1024));
-          var readableSize = (options.maximumImageFileSize / Math.pow(1024, unit)).toFixed(2) * 1 +
-                             ' ' + ' KMGTP'[unit] + 'B';
-          imageLimitation = '<small>' + lang.image.maximumFileSize + ' : ' + readableSize + '</small>';
-        }*/
-
-        /*var body = '<div class="form-group row-fluid note-group-select-from-files">' +
-                     '<label>' + lang.image.selectFromFiles + '</label>' +
-                     '<input class="note-image-input" type="file" name="files" accept="image*//*" multiple="multiple" />' +
-                     imageLimitation +
-                   '</div>';*/
         var body =  '<div class="form-group row-fluid">' +
                      '<label>' + lang.image.url + '</label>' +
                      '<input class="note-image-url form-control span12" type="text" />' +
