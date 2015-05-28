@@ -20,6 +20,6 @@ class ErrorController extends MainController {
      * @param $param
      */
     public function frontpage($param){
-        $this->view = new ErrorView($param['page']);
+        $this->view = new ErrorView('Page ',$param['page'],'not found!');
     }
 }

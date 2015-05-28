@@ -11,7 +11,7 @@ namespace ThePost\View;
 
 class ErrorView extends View{
 
-    function __construct($param)
+    function __construct($type,$page = '',$param)
     {
         parent::__construct();
 
@@ -19,7 +19,7 @@ class ErrorView extends View{
             'msg'   =>  $param
         );
 
-        $this->render_vars['type'] = 'Page';
+        $this->render_vars['type'] = $type;
 
         $this->set_template('error.twig');
     }
