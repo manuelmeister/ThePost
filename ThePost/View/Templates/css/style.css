@@ -36,6 +36,10 @@ h1{
     margin-bottom: 20px;
 }
 
+input[type='color'].form-control  {
+    width: 3em;
+}
+
 .element {
     padding: 20px;
     background: white;
