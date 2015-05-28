@@ -14,6 +14,7 @@ use ThePost\Controller\Output\MainController;
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\UserRepository;
+use ThePost\View\ErrorView;
 
 /**
  * Class Controller
@@ -50,14 +51,27 @@ class Controller {
 
         session_start();
 
-        $this->session_management();
-        $this->create_controller();
-        $this->session_management();
-        if(!$this->controller instanceof CRUDController){
-            $this->init_vars();
+        try{
 
+            //If you are already logged in
+            $this->session_management();
+
+            $this->create_controller();
+
+            //If you have logged you out (via LoginController)
+            $this->session_management();
+            if(!$this->controller instanceof CRUDController){
+                $this->init_vars();
+
+                echo $this->controller->view->render();
+            }
+        }catch (\Exception $e){
+            $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
+            $this->controller->get_options();
+            $this->controller->view_set_vars();
             echo $this->controller->view->render();
         }
+
     }
 
     /**
