@@ -50,7 +50,7 @@ class UpdateController extends CRUDController
             header("HTTP/1.0 404 Not Found");
             $this->view = new ErrorView('Error: ', '', $e->getMessage());
             $this->get_options();
-            $this->set_vars();
+            $this->view_set_vars();
             echo $this->view->render();
         }
     }
