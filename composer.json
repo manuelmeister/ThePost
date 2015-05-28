@@ -1,5 +1,5 @@
 {
-  "name": "thepost/ThePost",
+  "name": "thepost/the-post",
   "description": "A simple Blog",
   "minimum-stability": "dev",
   "license": "proprietary",
@@ -20,7 +20,7 @@
   ],
   "autoload": {
     "psr-0": {
-      "ThePost\\": ""
+      "": ""
     }
   }
 }
