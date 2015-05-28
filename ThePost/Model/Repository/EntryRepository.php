@@ -16,20 +16,7 @@ use ThePost\Model\Entity\Entry;
  * Class EntryRepository
  * @package ThePost\Model\Repository
  */
-class EntryRepository {
-
-    /**
-     * @var \PDO
-     */
-    private $pdo;
-
-    /**
-     * @param $pdo
-     */
-    function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+class EntryRepository extends Repository{
 
     /**
      * this functions finds an Entry by its ID

@@ -9,19 +9,7 @@
 namespace ThePost\Model\Repository;
 use ThePost\Model\Entity\Options;
 
-class OptionRepository {
-    /**
-     * @var \PDO
-     */
-    private $pdo;
-
-    /**
-     * @param $pdo
-     */
-    function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
+class OptionRepository extends Repository{
 
     /**
      * this functions finds an Entry by its ID
