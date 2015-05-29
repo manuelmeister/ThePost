@@ -35,7 +35,7 @@ class EntryRepository extends Repository{
      * @return array
      */
     public function findAll(){
-        $stmt = $this->pdo->prepare('SELECT * FROM Entry ORDER BY "timestamp"');
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry ORDER BY timestamp DESC');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, 'ThePost\Model\Entity\Entry');
     }
@@ -48,13 +48,7 @@ class EntryRepository extends Repository{
      */
     public function update($id, $title, $text){
 
-        $purifier_config = HTMLPurifier_Config::createDefault();
-        $purifier_config->set('Core.Encoding', 'UTF-8'); // replace with your encoding
-        $purifier_config->set('HTML.Doctype', 'HTML 4.01 Transitional');
-        $purifier_config->set('CSS.MaxImgLength', null); // allow any css
-        $purifier_config->set('HTML.MaxImgLength', null); // allow any css
-        $purifier = new HTMLPurifier($purifier_config);
-        $clean_text = $purifier->purify($text);
+        $clean_text = $this->clean_html($text);
 
         $stmt = $this->pdo->prepare('UPDATE Entry SET title=:title,content=:text WHERE id=:id;');
         $stmt->bindParam(':title',$title);
@@ -64,6 +58,45 @@ class EntryRepository extends Repository{
 
     }
 
+    /**
+     * @param $title
+     * @param $text
+     * @return int
+     */
+    public function add($user_id, $slug, $title, $text){
 
+
+        $clean_text = $this->clean_html($text);
+
+        var_dump($user_id . $slug . $title . $clean_text);
+
+        /*$stmt = $this->pdo->prepare('INSERT INTO Entry VALUES (null, ":user_id", ":slug", ":title",":text");');
+        $stmt->bindParam(':user_id',$user_id);
+        $stmt->bindParam(':slug',$slug);
+        $stmt->bindParam(':title',$title);
+        $stmt->bindParam(':text',$clean_text);*/
+
+        $stmt = $this->pdo->prepare("INSERT INTO Entry (user_id, slug, title, content) VALUES ( :user_id, :slug, :title, :text);");
+        $stmt->bindParam(':user_id',$user_id,\PDO::PARAM_INT);
+        $stmt->bindParam(':slug',$slug,\PDO::PARAM_STR);
+        $stmt->bindParam(':title',$title,\PDO::PARAM_STR);
+        $stmt->bindParam(':text',$clean_text,\PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return intval($this->pdo->lastInsertId());
+
+    }
+
+    private function clean_html($text){
+        $purifier_config = HTMLPurifier_Config::createDefault();
+        $purifier_config->set('Core.Encoding', 'UTF-8'); // replace with your encoding
+        $purifier_config->set('HTML.Doctype', 'HTML 4.01 Transitional');
+        $purifier_config->set('CSS.MaxImgLength', null); // allow any css
+        $purifier_config->set('HTML.MaxImgLength', null); // allow any css
+        $purifier = new HTMLPurifier($purifier_config);
+        return $purifier->purify($text);
+
+    }
 
 }
