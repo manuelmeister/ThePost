@@ -10,6 +10,9 @@ namespace ThePost\Controller;
 
 
 use ThePost\Controller\CRUD\CRUDController;
+use ThePost\Controller\Exception\ConfigException;
+use ThePost\Controller\Output\ErrorController;
+use ThePost\Controller\Output\InstallController;
 use ThePost\Controller\Output\MainController;
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
@@ -47,28 +50,63 @@ class Controller {
      */
     function __construct()
     {
-        $this->model = new Model();
-
-        session_start();
-
         try{
+            $this->model = new Model();
 
-            //If you are already logged in
-            $this->session_management();
+            session_start();
 
-            $this->create_controller();
+            try{
 
-            //If you have logged you out (via LoginController)
-            $this->session_management();
-            if(!$this->controller instanceof CRUDController){
-                $this->init_vars();
+                //If you are already logged in
+                $this->session_management();
 
+                $this->create_controller();
+
+                //If you have logged you out (via LoginController)
+                $this->session_management();
+                if(!$this->controller instanceof CRUDController){
+                    $this->init_vars();
+
+                    echo $this->controller->view->render();
+                }
+            }catch (\Exception $e){
+                // Catch every thrown error that's inside creation block
+                $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
+                $this->controller->get_options();
+                $this->controller->view_set_vars();
                 echo $this->controller->view->render();
             }
+
+
+        }catch (ConfigException $e){
+            //wrong configuration
+            $this->controller = new InstallController();
+            try{
+                $this->controller->publish();
+                $this->model = new Model();
+                $this->controller = new MainController($this->model);
+                $this->controller->frontpage(array());
+                $this->controller->view->add_render_vars(array('error'  =>  array(
+                    'msg'   =>  $e->getMessage(),
+                    'true'   =>  false
+                )));
+                $this->controller->get_options();
+            }catch (\Exception $e){
+                $this->controller->install();
+                $this->controller->view->add_render_vars(array('error'  =>  array(
+                    'msg'   =>  $e->getMessage(),
+                    'true'   =>  true
+                )));
+            }
+            echo $this->controller->view->render();
         }catch (\Exception $e){
-            $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
-            $this->controller->get_options();
-            $this->controller->view_set_vars();
+            //Other problem with the model
+            $this->controller = new InstallController();
+            $this->controller->install();
+            $this->controller->view->add_render_vars(array('error'  =>  array(
+                'msg'   =>  $e->getMessage(),
+                'true'   =>  true
+            )));
             echo $this->controller->view->render();
         }
 
@@ -116,7 +154,9 @@ class Controller {
      */
     private function init_vars(){
         $this->controller->set_authentication($this->user);
-        $this->controller->view_set_vars();
+        if(!$this->controller instanceof InstallController){
+            $this->controller->view_set_vars();
+        }
     }
 
 }

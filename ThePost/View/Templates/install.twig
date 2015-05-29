@@ -1,6 +1,6 @@
 <html lang="de_CH">
 <head>
-    <title>Your Blog</title>
+    <title>Installation | Your Blog</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -8,16 +8,18 @@
 <div class="container-fluid">
     <div class="content row">
         <main class="main col-md-8">
-            <form class="element">
+            <form class="element clearfix" method="post" action="/install/publish">
                 <h1>Install</h1>
-
+                {% if error.true %}
+                <p class="alert alert-danger">{{ error.msg|raw }}</p>
+                {% endif %}
                 <p>Here you can set the basic settings.</p>
                 <section class="section">
                     <h2>Database</h2>
 
                     <p>Please type in your database authentication.</p>
 
-                    <p class="alert alert-warning">Currently only MySQL with InnoDB is supported.</p>
+                    <p class="alert alert-info">Currently only MySQL with InnoDB is supported.</p>
 
                     <div class="form-group">
                         <label for="database_location">Database Location</label>
@@ -60,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="title">Blog Title</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Blog Title">
+                        <input type="text" class="form-control" id="title" name="setting[title]" placeholder="Blog Title">
 
                         <p class="help-block">The title/logo of your blog.</p>
                     </div>
@@ -68,13 +70,13 @@
                     <p>The title of the right </p>
                     <div class="form-group">
                         <label for="welcome_title">Welcome Widget Title</label>
-                        <input type="text" class="form-control" id="welcome_title" name="welcome_title"
+                        <input type="text" class="form-control" id="welcome_title" name="setting[welcome_title]"
                                placeholder="Welcome Widget Title">
 
                     </div>
                     <div class="form-group">
                         <label for="welcome_content">Welcome Widget Content</label>
-                        <textarea class="form-control" id="welcome_content" name="welcome_content"
+                        <textarea class="form-control" id="welcome_content" name="setting[welcome_content]"
                                placeholder="Welcome Widget Content"></textarea>
 
                     </div>
@@ -87,7 +89,7 @@
                     <div class="form-group">
                         <label for="style_backgroundcolor">Background Color</label>
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="color" class="color" id="style_backgroundcolor" name="style_backgroundcolor" value="#EFEFEF" onchange="$('#style_backgroundcolor_text').val($(this).val())"></span>
+                            <span class="input-group-addon"><input type="color" class="color" id="style_backgroundcolor" name="setting[style_backgroundcolor]" value="#EFEFEF" onchange="$('#style_backgroundcolor_text').val($(this).val())"></span>
                             <input type="text" class="form-control" id="style_backgroundcolor_text" name="style_backgroundcolor_text" value="#EFEFEF" onchange="$('#style_backgroundcolor').val($(this).val())">
                         </div>
                         <p class="help-block">Background color.</p>
@@ -95,13 +97,15 @@
                     <div class="form-group">
                         <label for="style_backgroundcolor">Heading 2 font color.</label>
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color" name="style_h2color" value="#3873de" onchange="$('#style_h2color_text').val($(this).val())"></span>
+                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color" name="setting[style_h2color]" value="#3873de" onchange="$('#style_h2color_text').val($(this).val())"></span>
                             <input type="text" class="form-control" id="style_h2color_text" name="style_h2color_text" value="#3873de" onchange="$('#style_h2color').val($(this).val())">
                         </div>
                         <p class="help-block">The font color of <code>&lt;h2&gt;</code> Heading 2 font color.</p>
                     </div>
                 </section>
-
+                <button class="btn btn-primary pull-right" type="submit" name="submit">
+                    Publish Blog
+                </button>
             </form>
         </main>
         <aside class="col-md-4 hidden-sm hidden-xs">

@@ -1,5 +1,9 @@
 {% extends "index.twig" %}
 
+{% block title %}
+    <title>{{ entry.title }} | {{ options.title }}</title>
+{% endblock %}
+
     {% block styles %}
         {% if authentication.login %}
             <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>

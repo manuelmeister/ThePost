@@ -1,5 +1,9 @@
 {% extends "index.twig" %}
 
+{% block title %}
+    <title>Settings | {{ options.title }}</title>
+{% endblock %}
+
 {% block main %}
     {% if authentication.login %}
 
