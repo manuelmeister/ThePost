@@ -35,7 +35,7 @@ class EntryRepository extends Repository{
      * @return array
      */
     public function findAll(){
-        $stmt = $this->pdo->prepare('SELECT * FROM Entry ORDER BY "timestamp"');
+        $stmt = $this->pdo->prepare('SELECT * FROM Entry ORDER BY timestamp DESC');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, 'ThePost\Model\Entity\Entry');
     }
