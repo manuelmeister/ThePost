@@ -56,4 +56,4 @@ class Model
             throw new ConfigException("Your database isn't yet configured! <a href='/install/'>Configure</a> it now.");
         }
     }
-}+
+}
