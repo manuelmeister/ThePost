@@ -13,6 +13,7 @@ use ThePost\Controller\CRUD\CRUDController;
 use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;
+use ThePost\View\PreviewView;
 
 /**
  * Class MainController
@@ -25,6 +26,17 @@ class EntryController extends MainController
      * @throws \Exception
      */
     public function index($input)
+    {
+        $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
+        $entries_repository = new EntryRepository($this->model->pdo);
+        if ($entry = $entries_repository->findByParam($param)) {
+            $this->view = new PreviewView($entry);
+        } else {
+            throw new \Exception("Entry $param not found!");
+        }
+    }
+
+    public function edit($input)
     {
         $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
         $entries_repository = new EntryRepository($this->model->pdo);

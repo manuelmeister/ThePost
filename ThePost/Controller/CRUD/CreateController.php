@@ -19,7 +19,7 @@ class CreateController extends CRUDController
                         $title = "title";
                         $text = "text";
                         $entry_repository = new EntryRepository($this->model->pdo);
-                        return $entry_repository->add($title, $text);
+                        //return $entry_repository->add($title, $text);
 
                         break;
                     /*case 'setting':

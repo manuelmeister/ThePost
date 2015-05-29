@@ -95,3 +95,9 @@ function uploadOptions(type, key, event){
 
     });
 }
+
+
+
+function remove(){
+
+}
