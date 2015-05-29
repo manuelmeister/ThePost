@@ -1,0 +1,51 @@
+{% extends "index.twig" %}
+
+    {% block styles %}
+        {% if authentication.login %}
+            <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>
+        {% else %}
+            <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
+        {% endif %}
+    {% endblock %}
+
+{% block main %}
+
+    {% if entry.id is defined %}
+        <article class="element entry clearfix" id="entry-{{ entry.id }}">
+    {% else %}
+        <article class="element entry clearfix" id="entry-0">
+    {% endif %}
+
+    {% if authentication.login %}
+    <header class="clearfix">
+        <a href="/edit/entry/{{ entry.id }}" class="btn btn-default pull-left" role="button">
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="update"> Edit</span>
+        </a>
+
+        <button class="update btn btn-danger pull-right" onclick="remove('entry', {{ entry.id }})">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span class="update"> Delete</span>
+        </button>
+    </header>
+        {# glyphicon-floppy-open #}
+    {% else %}
+    {% endif %}
+
+    <h2 class="title">{{ entry.title }}</h2>
+    <div class="text">{{ entry.content|raw }}</div>
+
+
+    </article>
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="/ThePost/View/Templates/js/upload.js"></script>
+    <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote().code('{{ entry.content|raw }}');
+        });
+    </script>
+{% endblock %}

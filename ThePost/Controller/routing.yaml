@@ -35,6 +35,10 @@
   controller: "Output\EntryController"
   method: "create"
 -
+  match: "(^/edit/(?P<type>[a-z]+)/(?:(?:(?P<id>[0-9]+)/?$)|(?:(?P<slug>[A-z0-9_\-.]+)/?$))/?$)"
+  controller: "Output\EntryController"
+  method: "edit"
+-
   match: "(^\/$)"
   controller: "Output\MainController"
   method: "frontpage"
