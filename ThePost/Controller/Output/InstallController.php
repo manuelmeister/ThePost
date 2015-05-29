@@ -57,8 +57,9 @@ class InstallController extends BasicController
             `title` VARCHAR(100) NOT NULL,
             `content` TEXT NOT NULL,
             `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8";
+            PRIMARY KEY (`id`),
+            FOREIGN KEY (`fk_user_id`) REFERENCES `User`(id) ON DELETE CASCADE
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;";
 
             $tables['options'] = "CREATE TABLE IF NOT EXISTS `Options` (
             `key` VARCHAR(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -67,7 +68,7 @@ class InstallController extends BasicController
             `description` VARCHAR(200) COLLATE utf8_unicode_ci NOT NULL,
             `type` VARCHAR(100) COLLATE utf8_unicode_ci DEFAULT 'text',
             PRIMARY KEY (`key`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
             $tables['users'] = "CREATE TABLE IF NOT EXISTS `User` (
             `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -75,7 +76,16 @@ class InstallController extends BasicController
             `email` VARCHAR(255) DEFAULT '',
             `password_hash` VARCHAR(255) DEFAULT NULL,
             PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8";
+            ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
+
+            $tables['install'] = "INSERT INTO Options (`key`, `value`, title, description, type) VALUES ('welcome_title', 'Welcome!', 'Welcome Title', 'Static welcome widget title', 'text');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('welcome_content', 'Hello, this is my blog.', 'Welcome Text', 'Static welcome widget content', 'text');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('title', 'Your Blog', 'Blogtitle', 'Title that gets displayed at the top of every page.', 'text');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color', '#3873de', 'H2 Color', 'Color of the 2. Heading', 'color');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color_hover', '#23527C', 'H2 Hover Color', 'Hover Color of the 2. Heading', 'color');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_backgroundcolor', '#efefef', 'Background Color', 'Background color of the site', 'color');
+            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('copyright', '© The Post', 'Copyright', 'Copyright information in the footer.', 'text');
+            ";
 
             foreach ($tables as $table) {
                 $stmt = $model->pdo->prepare($table);

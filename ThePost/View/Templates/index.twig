@@ -42,8 +42,11 @@
     body{
         background-color: {{ options.style_backgroundcolor }};
     }
-    h2 {
+    h2, h2 a {
         color: {{ options.style_h2color }};
+    }
+    h2:hover, h2 a:hover {
+        color: {{ options.style_h2color_hover }};
     }
 </style>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

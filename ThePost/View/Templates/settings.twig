@@ -8,14 +8,29 @@
     {% if authentication.login %}
 
         <form class="element clearfix" action="/settings/submit" method="post">
+            <h2>Settings</h2>
             {% for setting in settings %}
                 <div class="form-group clearfix">
                     <label for="setting-{{ setting.key }}">{{ setting.title }}</label>
 
                     <div class="form-inline">
-                        <input type="{{ setting.type }}" class="input-setting-{{ setting.key }} form-control"
-                               id="setting-{{ setting.key }}" name="settings[{{ setting.key }}]"
-                               value="{{ setting.value }}">
+                        {% if setting.type == "color" %}
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="color" class="input-setting-{{ setting.key }} color" id="setting-{{ setting.key }}"
+                                           name="settings[{{ setting.key }}]"
+                                           value="{{ setting.value }}"
+                                           onchange="$('#setting-{{ setting.key }}_text').val($(this).val())">
+                                </span>
+                                <input type="text" class="form-control" id="setting-{{ setting.key }}_text"
+                                       name="{{ setting.key }}_text" value="{{ setting.value }}"
+                                       onchange="$('#setting-{{ setting.key }}').val($(this).val())">
+                            </div>
+                        {% else %}
+                            <input type="{{ setting.type }}" class="input-setting-{{ setting.key }} form-control"
+                                   id="setting-{{ setting.key }}" name="settings[{{ setting.key }}]"
+                                   value="{{ setting.value }}">
+                        {% endif %}
                         <button class="setting-{{ setting.key }} update btn btn-default"
                                 onclick="uploadOptions('setting','{{ setting.key }}',event);">
                             <span class="setting-{{ setting.key }} glyphicon glyphicon-floppy-open"></span>
