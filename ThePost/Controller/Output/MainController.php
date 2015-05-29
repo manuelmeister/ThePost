@@ -8,6 +8,7 @@
 
 namespace ThePost\Controller\Output;
 
+use ThePost\Controller\BasicController;
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\EntryRepository;
@@ -19,7 +20,7 @@ use ThePost\View\View;
  * Class MainController
  * @package ThePost\Controller
  */
-class MainController {
+class MainController extends BasicController{
 
     /**
      * @var Model
@@ -27,19 +28,9 @@ class MainController {
     protected $model;
 
     /**
-     * @var View
-     */
-    public $view;
-
-    /**
      * @var array
      */
     protected $options_array = array();
-
-    /**
-     * @var User
-     */
-    protected $authentication;
 
     /**
      * @param $model
@@ -48,14 +39,6 @@ class MainController {
     {
         $this->model = $model;
         $this->get_options();
-    }
-
-    /**
-     * @param $authentication
-     */
-    public function set_authentication($authentication)
-    {
-        $this->authentication = $authentication;
     }
 
     public function view_set_vars()
