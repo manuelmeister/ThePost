@@ -27,8 +27,8 @@ class Model {
     function __construct()
     {
         $dsn = 'mysql:dbname=thepost;host=localhost';
-        $user = 'thepost';
-        $password = '1234';
+        $user = 'lukas';
+        $password = 'abcd';
         $this->pdo = new \PDO($dsn,$user,$password, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
     }
 }

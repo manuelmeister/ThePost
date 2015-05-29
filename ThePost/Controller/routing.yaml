@@ -31,6 +31,10 @@
   controller: "Output\InstallController"
   method: "install"
 -
+  match: "(^/add/(?P<type>[a-z]+)/?$)"
+  controller: "Output\EntryController"
+  method: "create"
+-
   match: "(^\/$)"
   controller: "Output\MainController"
   method: "frontpage"

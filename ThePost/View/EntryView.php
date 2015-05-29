@@ -11,12 +11,26 @@ namespace ThePost\View;
 
 class EntryView extends View{
 
-    function __construct($entry)
+    function __construct()
     {
         parent::__construct();
+
+
+    }
+
+    public function create(){
+
+
+
+        $this->set_template("entry.twig");
+
+    }
+
+    public function read($entry){
 
         $this->render_vars['entry'] = $entry;
 
         $this->set_template("entry.twig");
+
     }
 }

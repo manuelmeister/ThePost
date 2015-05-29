@@ -10,16 +10,26 @@
 
 {% block main %}
 
+    {% if entry.id is defined %}
     <article class="element entry clearfix" id="entry-{{ entry.id }}">
-
+        {% else %}
+        <article class="element entry clearfix" id="entry-0">
+    {% endif %}
         {% if authentication.login %}
 
             <h2 class="title onedit" contenteditable="true">{{ entry.title }}</h2>
             <div class="text onedit summernote"></div>
-            <button class="update btn btn-default pull-right" onclick="uploadEntry('entry',{{ entry.id }})">
-                <span class="glyphicon glyphicon-floppy-open"></span>
-                <span class="update"> Update</span>
-            </button>
+            {% if entry.id is defined %}
+                <button class="update btn btn-default pull-right" onclick="uploadEntry('entry',{{ entry.id }})">
+                    <span class="glyphicon glyphicon-floppy-open"></span>
+                    <span class="update"> Update</span>
+                </button>
+            {% else %}
+                <button class="update btn btn-default pull-right" onclick="addEntry('entry')">
+                    <span class="glyphicon glyphicon-floppy-open"></span>
+                    <span class="update"> Publish</span>
+                </button>
+            {% endif %}
 
             {# glyphicon-floppy-open #}
         {% else %}
