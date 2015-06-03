@@ -98,6 +98,23 @@ function uploadOptions(type, key, event){
 
 
 
-function remove(){
+function deleteEntry(key){
+
+    $.ajax({
+        type: 'POST',
+        url: '/delete/entry/'+key,
+        data: true,
+        statusCode:{
+            404: function(){
+                $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be deleted.');
+            },
+            401: function(){
+                $("#crud-error").removeClass("hidden").text('You are not allowed to delete, because you are not logged in.');
+            }
+        },
+        success: function () {
+            window.location.replace("/");
+        }
+    });
 
 }
