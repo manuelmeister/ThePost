@@ -14,6 +14,11 @@
 
 {% block main %}
 
+    <div class="alert alert-danger hidden" id="crud-error" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+    </div>
+
     {% if entry.id is defined %}
     <article class="element entry clearfix" id="entry-{{ entry.id }}">
         {% else %}

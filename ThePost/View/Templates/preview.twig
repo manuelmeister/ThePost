@@ -10,6 +10,11 @@
 
 {% block main %}
 
+    <div class="alert alert-danger hidden" id="crud-error" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+    </div>
+
     {% if entry.id is defined %}
         <article class="element entry clearfix" id="entry-{{ entry.id }}">
     {% else %}
@@ -23,7 +28,7 @@
             <span class="update"> Edit</span>
         </a>
 
-        <button class="update btn btn-danger pull-right" onclick="remove('entry', {{ entry.id }})">
+        <button class="update btn btn-danger pull-right" onclick="deleteEntry({{ entry.id }})">
             <span class="glyphicon glyphicon-trash"></span>
             <span class="update"> Delete</span>
         </button>
@@ -34,7 +39,7 @@
 
     <h2 class="title">{{ entry.title }}</h2>
     <div class="text">{{ entry.content|raw }}</div>
-
+            <date class="pull-right">{{ entry.timestamp|date }}</date>
 
     </article>
 
