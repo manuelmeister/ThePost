@@ -99,4 +99,11 @@ class EntryRepository extends Repository{
 
     }
 
+    public function deleteById($id)
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM Entry WHERE id=:id;');
+        $stmt->bindParam(':id',$id);
+        return $stmt->execute();
+    }
+
 }
