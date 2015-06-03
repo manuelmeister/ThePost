@@ -61,8 +61,16 @@ input[type='color'].form-control  {
     -webkit-appearance: caret;
 }
 
+textarea{
+    max-width: 100%;
+}
+
 input[type="color"]{
     border: none;
+}
+
+footer{
+    margin-bottom: 20px;
 }
 
 .note-editor{
