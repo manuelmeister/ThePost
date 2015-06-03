@@ -11,6 +11,7 @@ namespace ThePost\Controller\Output;
 use ThePost\Controller\BasicController;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\OptionRepository;
+use ThePost\View\ErrorView;
 use ThePost\View\InstallView;
 
 /**
@@ -25,7 +26,11 @@ class InstallController extends BasicController
      */
     public function install()
     {
-        $this->view = new InstallView();
+        if (file_exists('config.json') && filesize('config.json') > 0) {
+            $this->view = new ErrorView('Error: ','','Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
+        }else{
+            $this->view = new InstallView();
+        }
     }
 
     /**
@@ -33,7 +38,6 @@ class InstallController extends BasicController
      */
     public function publish()
     {
-        var_dump($_POST);
         if (isset($_POST['database'])) {
             $database = $_POST['database'];
 
@@ -97,6 +101,18 @@ class InstallController extends BasicController
             foreach ($settings as $key => $value) {
                 $option_repository->update($key, $value);
             }
+
+            $username = $_POST['user']['username'];
+            $email = $_POST['user']['email'];
+            $password_hash = password_hash($_POST['user']['password'],PASSWORD_BCRYPT);
+
+            $stmt = $model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
+            $stmt->bindParam(':username',$username);
+            $stmt->bindParam(':email',$email);
+            $stmt->bindParam(':password_hash',$password_hash);
+            $stmt->execute();
+
+
             header("Location: /");
         } else {
             throw new \Exception("No database configurations given via <a href='/install/'>install</a>.");

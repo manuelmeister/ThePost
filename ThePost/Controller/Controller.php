@@ -11,7 +11,6 @@ namespace ThePost\Controller;
 
 use ThePost\Controller\CRUD\CRUDController;
 use ThePost\Controller\Exception\ConfigException;
-use ThePost\Controller\Output\ErrorController;
 use ThePost\Controller\Output\InstallController;
 use ThePost\Controller\Output\MainController;
 use ThePost\Model\Entity\User;
@@ -23,7 +22,8 @@ use ThePost\View\ErrorView;
  * Class Controller
  * @package ThePost\Controller
  */
-class Controller {
+class Controller
+{
 
     /**
      * @var Model
@@ -50,12 +50,12 @@ class Controller {
      */
     function __construct()
     {
-        try{
+        try {
             $this->model = new Model();
 
             session_start();
 
-            try{
+            try {
 
                 //If you are already logged in
                 $this->session_management();
@@ -64,12 +64,12 @@ class Controller {
 
                 //If you have logged you out (via LoginController)
                 $this->session_management();
-                if(!$this->controller instanceof CRUDController){
+                if (!$this->controller instanceof CRUDController) {
                     $this->init_vars();
 
                     echo $this->controller->view->render();
                 }
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 // Catch every thrown error that's inside creation block
                 $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
                 $this->controller->get_options();
@@ -78,7 +78,7 @@ class Controller {
             }
 
 
-        }catch (ConfigException $e){
+        } catch (ConfigException $e) {
             //wrong configuration
             $this->controller = new InstallController();
             try{
@@ -103,9 +103,9 @@ class Controller {
             //Other problem with the model
             $this->controller = new InstallController();
             $this->controller->install();
-            $this->controller->view->add_render_vars(array('error'  =>  array(
-                'msg'   =>  $e->getMessage(),
-                'true'   =>  true
+            $this->controller->view->add_render_vars(array('error' => array(
+                'msg' => $e->getMessage(),
+                'true' => true
             )));
             echo $this->controller->view->render();
         }
@@ -115,15 +115,16 @@ class Controller {
     /**
      *
      */
-    private function session_management(){
+    private function session_management()
+    {
 
-        if(isset($_SESSION['user_id'])){
+        if (isset($_SESSION['user_id'])) {
 
             $user_repository = new UserRepository($this->model->pdo);
             $this->user = $user_repository->findUserByID($_SESSION['user_id']);
             $this->user->setLogin(true);
 
-        }else{
+        } else {
 
             $this->user = new User();
 
@@ -136,7 +137,8 @@ class Controller {
      * $method contains the method used by the Controller
      * $param contains the parameter given by the route
      */
-    private function create_controller(){
+    private function create_controller()
+    {
         $this->request = new RequestHandler($_SERVER['REQUEST_URI']);
 
         $controller = $this->request->getController();
@@ -152,9 +154,10 @@ class Controller {
     /**
      *
      */
-    private function init_vars(){
+    private function init_vars()
+    {
         $this->controller->set_authentication($this->user);
-        if(!$this->controller instanceof InstallController){
+        if (!$this->controller instanceof InstallController) {
             $this->controller->view_set_vars();
         }
     }

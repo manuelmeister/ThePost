@@ -58,11 +58,40 @@
                     </div>
                 </section>
                 <section class="section">
+                    <h2>Admin Authentication</h2>
+
+                    <p>Please type in your authentication.</p>
+
+                    <div class="form-group">
+                        <label for="user_username">Username</label>
+                        <input type="text" class="form-control" id="user_username" name="user[username]"
+                               placeholder="Username" value="Admin">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_email">E-Mail</label>
+                        <input type="email" class="form-control" id="user_email" name="user[email]" placeholder="info@chuun.ninja">
+
+                        <p class="help-block">Enter your E-Mail Address, this will be used for your authentication. </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_password">Create a password</label>
+                        <input type="password" class="form-control" id="user_password" name="user[password]">
+
+                        <p class="help-block">Please create a password.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_password_verify">Confirm your password</label>
+                        <input type="password" class="form-control" id="user_password_verify" name="user[password_verify]">
+
+                        <p class="help-block">Reenter your previous password.</p>
+                    </div>
+                </section>
+                <section class="section">
                     <h2>Information</h2>
 
                     <div class="form-group">
                         <label for="title">Blog Title</label>
-                        <input type="text" class="form-control" id="title" name="setting[title]" placeholder="Blog Title">
+                        <input type="text" class="form-control" id="title" name="setting[title]" value="Blog Title">
 
                         <p class="help-block">The title/logo of your blog.</p>
                     </div>
