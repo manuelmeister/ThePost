@@ -43,6 +43,10 @@
   controller: "Output\EntryController"
   method: "edit"
 -
+  match: "(^/delete/(?P<type>[a-z]+)/(?P<id>[0-9]+)/?$)"
+  controller: "CRUD\DeleteController"
+  method: "delete"
+-
   match: "(^\/$)"
   controller: "Output\MainController"
   method: "frontpage"
