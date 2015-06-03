@@ -55,9 +55,9 @@ class InstallController extends BasicController
             $model = new Model();
 
             $tables['entry'] = "CREATE TABLE IF NOT EXISTS `Entry` (
-            `id` INT(11) NOT NULL AUTO_INCREMENT,
+            `id` INT(11) UNIQUE NOT NULL AUTO_INCREMENT,
             `user_id` INT(11) NOT NULL,
-            `slug` VARCHAR(100) NOT NULL,
+            `slug` VARCHAR(100) UNIQUE NOT NULL,
             `title` VARCHAR(100) NOT NULL,
             `content` TEXT NOT NULL,
             `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

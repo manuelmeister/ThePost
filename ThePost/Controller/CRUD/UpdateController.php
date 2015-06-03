@@ -32,14 +32,8 @@ class UpdateController extends CRUDController
                         $text = $_POST['text'];
 
                         $entry_repository = new EntryRepository($this->model->pdo);
-                        if ($param['slug'] == 0){
-                            $user_id = $this->authentication->getId();
-                            $slug = strtolower(str_replace(" ", "_", $title));
+                        $entry_repository->update(intval($param['slug']), $title, $text);
 
-                            $entry_repository->add($user_id, $slug, $title, $text);
-                        } else {
-                            $entry_repository->update(intval($param['slug']), $title, $text);
-                        }
                         break;
                     case 'setting':
                         if (!isset($param['slug']) & !isset($_POST['value'])) {

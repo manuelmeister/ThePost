@@ -12,22 +12,27 @@ class CreateController extends CRUDController
     {
         try {
             if($this->authentication->isLogin()){
-                var_dump($param);
                 switch ($param['type']){
                     case 'entry':
 
-                        $title = "title";
-                        $text = "text";
-                        $entry_repository = new EntryRepository($this->model->pdo);
-                        //return $entry_repository->add($title, $text);
+                        if (!isset($_POST['title']) & !isset($_POST['text'])) {
+                            throw new \Exception("No content given to update.");
+                        }
+                        $title = $_POST['title'];
+                        $text = $_POST['text'];
 
+                        $user_id = $this->authentication->getId();
+                        $slug = strtolower(str_replace(" ", "_", $title));
+
+                        $entry_repository = new EntryRepository($this->model->pdo);
+                        //If slug already exist add a number to the slug
+                        if(!$entry = $entry_repository->add($user_id,$slug,$title, $text)){
+                            $i=1;
+                            while(!$entry ){
+                                $entry = $entry_repository->add($user_id,$slug . $i++,$title, $text);
+                            }
+                        }
                         break;
-                    /*case 'setting':
-                        $key = $param['slug'];
-                        $value = $_POST['value'];
-                        $options_repository = new OptionRepository($this->model->pdo);
-                        $options_repository->update($key, $value);
-                        break;*/
                     default:
                         throw new \Exception("Cannot add ".$param["type"]);
                 }

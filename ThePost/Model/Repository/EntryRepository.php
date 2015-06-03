@@ -68,23 +68,12 @@ class EntryRepository extends Repository{
 
         $clean_text = $this->clean_html($text);
 
-        var_dump($user_id . $slug . $title . $clean_text);
-
-        /*$stmt = $this->pdo->prepare('INSERT INTO Entry VALUES (null, ":user_id", ":slug", ":title",":text");');
-        $stmt->bindParam(':user_id',$user_id);
-        $stmt->bindParam(':slug',$slug);
-        $stmt->bindParam(':title',$title);
-        $stmt->bindParam(':text',$clean_text);*/
-
         $stmt = $this->pdo->prepare("INSERT INTO Entry (user_id, slug, title, content) VALUES ( :user_id, :slug, :title, :text);");
         $stmt->bindParam(':user_id',$user_id,\PDO::PARAM_INT);
         $stmt->bindParam(':slug',$slug,\PDO::PARAM_STR);
         $stmt->bindParam(':title',$title,\PDO::PARAM_STR);
         $stmt->bindParam(':text',$clean_text,\PDO::PARAM_STR);
-
-        $stmt->execute();
-
-        return intval($this->pdo->lastInsertId());
+        return $stmt->execute();
 
     }
 

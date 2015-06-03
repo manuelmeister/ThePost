@@ -39,7 +39,6 @@ function addEntry(type){
 
     var title = $("h2.title.onedit").text();
     var text = $('.summernote').code();
-    var id = 0;
     var data = {
         "title": title,
         "text": text
@@ -49,7 +48,7 @@ function addEntry(type){
 
     $.ajax({
         type: 'POST',
-        url: '/upload/'+type+"/"+id,
+        url: '/create/'+type+"/",
         data: data,
         success: function () {
             $("button.update").removeClass("btn-default").addClass("btn-success");

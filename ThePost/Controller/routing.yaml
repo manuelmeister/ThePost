@@ -7,6 +7,10 @@
   controller: "CRUD\UpdateController"
   method: "update"
 -
+  match: "(^/create/(?P<type>[a-z]+)/?$)"
+  controller: "CRUD\CreateController"
+  method: "create"
+-
   match: "(^/login/?$)"
   controller: "Output\LoginController"
   method: "login"
