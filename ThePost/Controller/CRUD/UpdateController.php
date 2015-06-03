@@ -43,6 +43,7 @@ class UpdateController extends CRUDController
                         break;
                     case 'setting':
                         if (!isset($param['slug']) & !isset($_POST['value'])) {
+                            header("HTTP/1.0 404 Not Found");
                             throw new \Exception("No content given to update.");
                         }
                         $key = $param['slug'];
@@ -54,11 +55,11 @@ class UpdateController extends CRUDController
                 sleep(1);
 
             } else {
+                header("HTTP/1.0 401 Not authorized");
                 throw new \Exception("You are not allowed to update, because you are not logged in.");
             }
 
         } catch (\Exception $e) {
-            header("HTTP/1.0 404 Not Found");
             throw new \Exception($e->getMessage());
         }
     }
