@@ -4,6 +4,11 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ /index.php [QSA,L]
 
+<Files "*.json">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
 <FilesMatch "\.(js|css)$">
         FileETag None
         Header set Cache-Control "max-age=604800, public, must-revalidate"
