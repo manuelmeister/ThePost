@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="content row">
         <main class="main col-md-8">
-            <form class="element clearfix" method="post" action="/install/publish">
+            <form class="element clearfix" method="post" action="/install/publish" autocomplete="off">
                 <h1>Install</h1>
                 {% if error.true %}
                 <p class="alert alert-danger">{{ error.msg|raw }}</p>
