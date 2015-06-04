@@ -27,7 +27,7 @@ class InstallController extends BasicController
     public function install()
     {
         if (file_exists('config.json') && filesize('config.json') > 0) {
-            $this->view = new ErrorView('Error: ','','Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
+            $this->view = new ErrorView('Error: ','','Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the res/config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
         }else{
             $this->view = new InstallView();
         }
