@@ -23,7 +23,6 @@ class SettingsController extends MainController {
     public function saveAll(){
         $options_repository = new OptionRepository($this->model->pdo);
 
-        var_dump($_POST['settings']);
         if(isset($_POST['settings'])){
             $settings = $_POST['settings'];
 
