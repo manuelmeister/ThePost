@@ -34,7 +34,7 @@
                         <article class="element entry clearfix" id="entry-{{ entry.id }}">
                             <h2><a href="/entry/{{ entry.slug }}">{{ entry.title }}</a></h2>
 
-                            <p>{{ entry.content|raw }}</p>
+                            <div>{{ entry.content|raw }}</div>
                         </article>
                     {% endfor %}
                 {% endif %}
@@ -54,8 +54,8 @@
 {% include 'footer.twig' %}
 </body>
 </html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'/>
 {% block styles %}
     <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
 {% endblock %}
