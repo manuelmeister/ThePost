@@ -54,6 +54,11 @@ class InstallController extends BasicController
 
             $model = new Model();
 
+            $tables["drop"][] = "DROP TABLE IF EXISTS 'User';";
+            $tables["drop"][] = "DROP TABLE IF EXISTS 'Entry';";
+            $tables["drop"][] = "DROP TABLE IF EXISTS 'Options';";
+
+
             $tables['user'] = "CREATE TABLE `User` (
             `id` INT(11) NOT NULL AUTO_INCREMENT,
             `username` VARCHAR(100) UNIQUE NOT NULL,
