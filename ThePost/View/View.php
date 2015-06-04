@@ -7,6 +7,7 @@
  */
 
 namespace ThePost\View;
+use Twig_Loader_Filesystem;
 
 
 /**
@@ -42,7 +43,7 @@ class View
     function __construct()
     {
         \Twig_Autoloader::register();
-        $this->loader = new \Twig_Loader_Filesystem(__DIR__ . '/Templates');
+        $this->loader = new Twig_Loader_Filesystem(__DIR__ . '/Templates');
         $this->twig = new \Twig_Environment($this->loader);
     }
 

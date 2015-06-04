@@ -9,8 +9,18 @@
 namespace ThePost\View;
 
 
+use ThePost\Model\Entity\Entry;
+
+/**
+ * Class EntryErrorView
+ * @package ThePost\View
+ */
 class EntryErrorView extends View{
 
+    /**
+     * Displays error view
+     * @param $entry Entry
+     */
     function __construct($entry)
     {
         parent::__construct();

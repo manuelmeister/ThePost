@@ -29,6 +29,7 @@ class MainController extends BasicController{
     }
 
     /**
+     * Displays all entries
      * @param $param Array
      */
     public function frontpage($param){

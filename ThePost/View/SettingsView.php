@@ -8,8 +8,16 @@
 
 namespace ThePost\View;
 
+/**
+ * Class SettingsView
+ * @package ThePost\View
+ */
 class SettingsView extends View {
 
+    /**
+     * Displays settings page
+     * @param $settings
+     */
     function __construct($settings)
     {
         parent::__construct();
