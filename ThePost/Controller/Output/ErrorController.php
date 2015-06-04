@@ -17,6 +17,7 @@ use ThePost\View\ErrorView;
 class ErrorController extends MainController {
 
     /**
+     * Displays an error
      * @param $param
      */
     public function frontpage($param){
