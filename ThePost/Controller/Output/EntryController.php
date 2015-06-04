@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bmeism
- * Date: 13.05.2015
- * Time: 16:44
- */
 
 namespace ThePost\Controller\Output;
 
@@ -22,7 +16,8 @@ use ThePost\View\PreviewView;
 class EntryController extends MainController
 {
     /**
-     * @param $input
+     * Displays
+     * @param $input Array it stores params given via url
      * @throws \Exception
      */
     public function index($input)
@@ -36,6 +31,11 @@ class EntryController extends MainController
         }
     }
 
+    /**
+     * Displays the EditView of the entry if given
+     * @param $input Array it stores params given via url
+     * @throws \Exception
+     */
     public function edit($input)
     {
         $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
@@ -48,6 +48,11 @@ class EntryController extends MainController
         }
     }
 
+    /**
+     * Displays the entry creation view
+     * @param $param Array it stores params given via url
+     * @throws \Exception
+     */
     public function create($param)
     {
         try {
@@ -59,12 +64,6 @@ class EntryController extends MainController
                         $this->view->create();
 
                         break;
-                    /*case 'setting':
-                        $key = $param['slug'];
-                        $value = $_POST['value'];
-                        $options_repository = new OptionRepository($this->model->pdo);
-                        $options_repository->update($key, $value);
-                        break;*/
                     default:
                         throw new \Exception("Cannot add ".$param["type"]);
                 }
