@@ -6,8 +6,17 @@ use ThePost\Model\Repository\EntryRepository;
 use ThePost\Model\Repository\OptionRepository;
 use ThePost\View\EntryView;
 
+/**
+ * Class CreateController
+ * @package ThePost\Controller\CRUD
+ */
 class CreateController extends CRUDController
 {
+    /**
+     * Inserts an entry in the database if you are logged in
+     * @param $param Array it stores params given via url
+     * @throws \Exception
+     */
     public function create($param)
     {
         try {
@@ -16,6 +25,7 @@ class CreateController extends CRUDController
                     case 'entry':
 
                         if (!isset($_POST['title']) & !isset($_POST['text'])) {
+                            header("HTTP/1.0 406 No content given to update",true,406);
                             throw new \Exception("No content given to update.");
                         }
                         $title = $_POST['title'];
@@ -34,17 +44,18 @@ class CreateController extends CRUDController
                         }
                         break;
                     default:
+                        header("HTTP/1.0 415 Cannot add this",true,415);
                         throw new \Exception("Cannot add ".$param["type"]);
                 }
                 //TODO remove wait time
                 sleep(1);
 
             }else{
+                header("HTTP/1.0 401 You are not logged in",true,401);
                 throw new \Exception("You are not logged in.");
             }
 
         } catch (\Exception $e) {
-            header("HTTP/1.0 404 Not Found");
             throw new \Exception($e->getMessage());
         }
     }
