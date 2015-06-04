@@ -26,7 +26,7 @@
     {% endif %}
         {% if authentication.login %}
 
-            <h2 class="title onedit" contenteditable="true">{{ entry.title }}</h2>
+            <h2 class="title onedit" contenteditable="true" placeholder="Your title">{{ entry.title }}</h2>
             <div class="text onedit summernote"></div>
             {% if entry.id is defined %}
                 <button class="update btn btn-default pull-right" onclick="uploadEntry('entry',{{ entry.id }})">
@@ -55,7 +55,9 @@
     <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.summernote').summernote().code('{{ entry.content|raw }}');
+            $('.summernote').summernote({
+                placeholder: 'Type your content here...'
+            }).code('{{ entry.content|raw }}');
         });
     </script>
 {% endblock %}
