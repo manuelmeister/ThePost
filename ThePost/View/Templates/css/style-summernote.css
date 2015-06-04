@@ -27,6 +27,17 @@ h1 {
     background: white;
 }
 
+h2.title.onedit {
+    line-height: 1.5em;
+    padding: 3px;
+    border: 1px solid #bebebe;
+}
+
+h2.title.onedit:empty:before {
+    content: attr(placeholder);
+    color: #808080;
+}
+
 .note-editor {
     margin-bottom: 10px;
 }
