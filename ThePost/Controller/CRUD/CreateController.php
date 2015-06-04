@@ -32,7 +32,7 @@ class CreateController extends CRUDController
                         $text = $_POST['text'];
 
                         $user_id = $this->authentication->getId();
-                        $slug = strtolower(str_replace(" ", "_", $title));
+                        $slug = str_replace(" ", "_", preg_replace("/([^a-zA-Z\\s])+/", "",strtolower($title)));
 
                         $entry_repository = new EntryRepository($this->model->pdo);
                         //If slug already exist add a number to the slug
@@ -60,3 +60,4 @@ class CreateController extends CRUDController
         }
     }
 }
+
