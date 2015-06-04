@@ -22,7 +22,7 @@ class InstallController extends BasicController
 {
 
     /**
-     *
+     * Displays InstallView, if no config exists
      */
     public function install()
     {
@@ -34,7 +34,8 @@ class InstallController extends BasicController
     }
 
     /**
-     *
+     * Creates Database and redirects to the frontpage
+     * @uses $_POST['database']
      */
     public function publish()
     {
@@ -52,7 +53,7 @@ class InstallController extends BasicController
             file_put_contents('config.json', $json);
             unset($_POST['database']);
 
-            $model = new Model();
+            $this->model = new Model();
 
             $tables["drop"][] = "DROP TABLE IF EXISTS 'User';";
             $tables["drop"][] = "DROP TABLE IF EXISTS 'Entry';";
@@ -98,22 +99,22 @@ class InstallController extends BasicController
 
             try{
 
-                $model->pdo->beginTransaction();
+                $this->model->pdo->beginTransaction();
 
                 foreach ($tables as $table) {
                     if(is_array($table)){
                         foreach ($table as $row) {
-                            $stmt = $model->pdo->prepare($row);
+                            $stmt = $this->model->pdo->prepare($row);
                             $stmt->execute();
                         }
 
                     }else{
-                        $stmt = $model->pdo->prepare($table);
+                        $stmt = $this->model->pdo->prepare($table);
                         $stmt->execute();
                     }
                 }
 
-                $option_repository = new OptionRepository($model->pdo);
+                $option_repository = new OptionRepository($this->model->pdo);
                 $settings = $_POST['setting'];
                 foreach ($settings as $key => $value) {
                     $option_repository->update($key, $value);
@@ -123,26 +124,27 @@ class InstallController extends BasicController
                 $email = $_POST['user']['email'];
                 $password_hash = password_hash($_POST['user']['password'],PASSWORD_BCRYPT);
 
-                $stmt = $model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
+                $stmt = $this->model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
                 $stmt->bindParam(':username',$username);
                 $stmt->bindParam(':email',$email);
                 $stmt->bindParam(':password_hash',$password_hash);
                 $stmt->execute();
 
-                if(!$model->pdo->commit()){
-                    throw new \Exception($model->pdo->errorInfo());
+                if(!$this->model->pdo->commit()){
+                    throw new \Exception($this->model->pdo->errorInfo());
                 }
 
                 header("Location: /");
 
             }catch (\PDOException $e){
-                $model->pdo->rollBack();
+                $this->model->pdo->rollBack();
                 file_put_contents('config.json','');
                 throw new \Exception('An error occurred. We\'re sorry about this. Try to reconfigure.');
             }
 
 
         } else {
+            header("HTTP/1.0 406 No content given via POST",true,406);
             throw new \Exception("No database configurations given via <a href='/install/'>install</a>.");
         }
     }
