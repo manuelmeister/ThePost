@@ -54,18 +54,26 @@ class InstallController extends BasicController
 
             $model = new Model();
 
-            $tables['entry'] = "CREATE TABLE IF NOT EXISTS `Entry` (
-            `id` INT(11) UNIQUE NOT NULL AUTO_INCREMENT,
+            $tables['user'] = "CREATE TABLE `User` (
+            `id` INT(11) NOT NULL AUTO_INCREMENT,
+            `username` VARCHAR(100) UNIQUE NOT NULL,
+            `email` VARCHAR(255) UNIQUE DEFAULT '',
+            `password_hash` VARCHAR(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
+
+            $tables['entry'] = "CREATE TABLE `Entry` (
+            `id` INT(11) NOT NULL AUTO_INCREMENT,
             `user_id` INT(11) NOT NULL,
             `slug` VARCHAR(100) UNIQUE NOT NULL,
             `title` VARCHAR(100) NOT NULL,
             `content` TEXT NOT NULL,
             `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`),
-            FOREIGN KEY (`fk_user_id`) REFERENCES `User`(id) ON DELETE CASCADE
+            FOREIGN KEY (`user_id`) REFERENCES `User`(id) ON DELETE CASCADE
             ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;";
 
-            $tables['options'] = "CREATE TABLE IF NOT EXISTS `Options` (
+            $tables['options'] = "CREATE TABLE `Options` (
             `key` VARCHAR(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
             `value` VARCHAR(200) CHARACTER SET utf8 DEFAULT NULL,
             `title` VARCHAR(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -74,46 +82,61 @@ class InstallController extends BasicController
             PRIMARY KEY (`key`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 
-            $tables['users'] = "CREATE TABLE IF NOT EXISTS `User` (
-            `id` INT(11) NOT NULL AUTO_INCREMENT,
-            `username` VARCHAR(100) NOT NULL,
-            `email` VARCHAR(255) DEFAULT '',
-            `password_hash` VARCHAR(255) DEFAULT NULL,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;";
 
-            $tables['install'] = "INSERT INTO Options (`key`, `value`, title, description, type) VALUES ('welcome_title', 'Welcome!', 'Welcome Title', 'Static welcome widget title', 'text');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('welcome_content', 'Hello, this is my blog.', 'Welcome Text', 'Static welcome widget content', 'text');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('title', 'Your Blog', 'Blogtitle', 'Title that gets displayed at the top of every page.', 'text');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color', '#3873de', 'H2 Color', 'Color of the 2. Heading', 'color');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color_hover', '#23527C', 'H2 Hover Color', 'Hover Color of the 2. Heading', 'color');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_backgroundcolor', '#efefef', 'Background Color', 'Background color of the site', 'color');
-            INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('copyright', '© The Post', 'Copyright', 'Copyright information in the footer.', 'text');
-            ";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('welcome_title', 'Welcome!', 'Welcome Title', 'Static welcome widget title', 'text');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('welcome_content', 'Hello, this is my blog.', 'Welcome Text', 'Static welcome widget content', 'textarea');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('title', 'Your Blog', 'Blogtitle', 'Title that gets displayed at the top of every page.', 'text');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color', '#3873de', 'H2 Color', 'Color of the 2. Heading', 'color');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_h2color_hover', '#23527C', 'H2 Hover Color', 'Hover Color of the 2. Heading', 'color');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_backgroundcolor', '#efefef', 'Background Color', 'Background color of the site', 'color');";
+            $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('copyright', '© The Post', 'Copyright', 'Copyright information in the footer.', 'text');";
 
-            foreach ($tables as $table) {
-                $stmt = $model->pdo->prepare($table);
+            try{
+
+                $model->pdo->beginTransaction();
+
+                foreach ($tables as $table) {
+                    if(is_array($table)){
+                        foreach ($table as $row) {
+                            $stmt = $model->pdo->prepare($row);
+                            $stmt->execute();
+                        }
+
+                    }else{
+                        $stmt = $model->pdo->prepare($table);
+                        $stmt->execute();
+                    }
+                }
+
+                $option_repository = new OptionRepository($model->pdo);
+                $settings = $_POST['setting'];
+                foreach ($settings as $key => $value) {
+                    $option_repository->update($key, $value);
+                }
+
+                $username = $_POST['user']['username'];
+                $email = $_POST['user']['email'];
+                $password_hash = password_hash($_POST['user']['password'],PASSWORD_BCRYPT);
+
+                $stmt = $model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
+                $stmt->bindParam(':username',$username);
+                $stmt->bindParam(':email',$email);
+                $stmt->bindParam(':password_hash',$password_hash);
                 $stmt->execute();
+
+                if(!$model->pdo->commit()){
+                    throw new \Exception($model->pdo->errorInfo());
+                }
+
+                header("Location: /");
+
+            }catch (\PDOException $e){
+                $model->pdo->rollBack();
+                file_put_contents('config.json','');
+                throw new \Exception('An error occurred. We\'re sorry about this. Try to reconfigure.');
             }
 
-            $option_repository = new OptionRepository($model->pdo);
-            $settings = $_POST['setting'];
-            foreach ($settings as $key => $value) {
-                $option_repository->update($key, $value);
-            }
 
-            $username = $_POST['user']['username'];
-            $email = $_POST['user']['email'];
-            $password_hash = password_hash($_POST['user']['password'],PASSWORD_BCRYPT);
-
-            $stmt = $model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
-            $stmt->bindParam(':username',$username);
-            $stmt->bindParam(':email',$email);
-            $stmt->bindParam(':password_hash',$password_hash);
-            $stmt->execute();
-
-
-            header("Location: /");
         } else {
             throw new \Exception("No database configurations given via <a href='/install/'>install</a>.");
         }
