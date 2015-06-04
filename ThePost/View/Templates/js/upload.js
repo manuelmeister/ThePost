@@ -3,15 +3,12 @@ function uploadEntry(type, id){
     $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
     $("span.update").text(" Updating");
 
-
     var title = $("h2.title.onedit").text();
     var text = $('.summernote').code();
     var data = {
         "title": title,
         "text": text
     };
-
-
 
     $.ajax({
         type: 'POST',
@@ -21,9 +18,17 @@ function uploadEntry(type, id){
             $("button.update").removeClass("btn-default").addClass("btn-success");
             $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-ok").text();
             $("span.update").text(" Updated");
+            window.location.replace("/");
         },
-        error: function () {
-            $("button.update").removeClass("btn-default").addClass("btn-danger");
+        statusCode:{
+            404: function(){
+                $("button.update").removeClass().addClass("btn btn-danger");
+                $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be updated.');
+            },
+            401: function(){
+                $("button.update").removeClass().addClass("btn btn-danger");
+                $("#crud-error").removeClass("hidden").html('You are not allowed to update, because you are not <a href="/login/">logged in</a>.');
+            }
         }
 
 
@@ -36,15 +41,12 @@ function addEntry(type){
     $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
     $("span.update").text(" Publishing");
 
-
     var title = $("h2.title.onedit").text();
     var text = $('.summernote').code();
     var data = {
         "title": title,
         "text": text
     };
-
-
 
     $.ajax({
         type: 'POST',
@@ -54,12 +56,18 @@ function addEntry(type){
             $("button.update").removeClass("btn-default").addClass("btn-success");
             $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-ok").text();
             $("span.update").text(" Published");
+            window.location.replace("/");
         },
-        error: function () {
-            $("button.update").removeClass("btn-default").addClass("btn-danger");
+        statusCode:{
+            404: function(){
+                $("button.update").removeClass().addClass("btn btn-danger");
+                $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be created.');
+            },
+            401: function(){
+                $("button.update").removeClass().addClass("btn btn-danger");
+                $("#crud-error").removeClass("hidden").html('You are not allowed to create, because you are not <a href="/login/">logged in</a>.');
+            }
         }
-
-
     });
 }
 
@@ -70,13 +78,10 @@ function uploadOptions(type, key, event){
     $("button.setting-"+key+" .glyphicon").removeClass().addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate").text();
     $("span.string-setting-"+key).text(" Updating");
 
-
     var value = $('.input-setting-'+key).val();
     var data = {
         "value": value
     };
-
-
 
     $.ajax({
         type: 'POST',
@@ -90,8 +95,6 @@ function uploadOptions(type, key, event){
         error: function () {
             $("button.setting-"+key).removeClass("btn-*").addClass("btn-danger");
         }
-
-
     });
 }
 
