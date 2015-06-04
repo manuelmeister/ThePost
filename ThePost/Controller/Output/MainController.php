@@ -9,12 +9,9 @@
 namespace ThePost\Controller\Output;
 
 use ThePost\Controller\BasicController;
-use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\EntryRepository;
-use ThePost\Model\Repository\OptionRepository;
 use ThePost\View\FrontView;
-use ThePost\View\View;
 
 /**
  * Class MainController
@@ -23,17 +20,7 @@ use ThePost\View\View;
 class MainController extends BasicController{
 
     /**
-     * @var Model
-     */
-    protected $model;
-
-    /**
-     * @var array
-     */
-    protected $options_array = array();
-
-    /**
-     * @param $model
+     * @param $model Model
      */
     function __construct($model)
     {
@@ -41,32 +28,8 @@ class MainController extends BasicController{
         $this->get_options();
     }
 
-    public function view_set_vars()
-    {
-        $this->view->set_render_vars($this->options_array,$this->authentication);
-    }
-
     /**
-     * Gets all Settings(Options) from Repository and fills it in an associative array like:
-     *
-     *      array(
-     *          key1 => value1
-     *          key2 => value2
-     *      )
-     *
-     */
-    public function get_options()
-    {
-        $options_repository = new OptionRepository($this->model->pdo);
-        $options = $options_repository->findAll();
-
-        foreach ($options as $option) {
-            $this->options_array[$option->getKey()] = $option->getValue();
-        }
-    }
-
-    /**
-     * @param $param
+     * @param $param Array
      */
     public function frontpage($param){
         $entry_repository = new EntryRepository($this->model->pdo);
