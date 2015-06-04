@@ -108,7 +108,7 @@ function deleteEntry(key){
                 $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be deleted.');
             },
             401: function(){
-                $("#crud-error").removeClass("hidden").text('You are not allowed to delete, because you are not logged in.');
+                $("#crud-error").removeClass("hidden").html('You are not allowed to delete, because you are not <a href="/login/">logged in</a>.');
             }
         },
         success: function () {
