@@ -10,8 +10,17 @@ namespace ThePost\Controller\CRUD;
 
 use ThePost\Model\Repository\EntryRepository;
 
+/**
+ * Class DeleteController
+ * @package ThePost\Controller\CRUD
+ */
 class DeleteController extends CRUDController{
 
+    /**
+     * Deletes currently only an entry
+     * @param $param Array it stores params given via url
+     * @throws \Exception
+     */
     public function delete($param)
     {
         try {
