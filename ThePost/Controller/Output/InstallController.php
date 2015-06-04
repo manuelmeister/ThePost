@@ -26,7 +26,7 @@ class InstallController extends BasicController
      */
     public function install()
     {
-        if (file_exists('config.json') && filesize('config.json') > 0) {
+        if (file_exists('res/config.json') && filesize('res/config.json') > 0) {
             $this->view = new ErrorView('Error: ','','Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the res/config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
         }else{
             $this->view = new InstallView();
@@ -50,7 +50,7 @@ class InstallController extends BasicController
 
 
             $json = json_encode($database);
-            file_put_contents('config.json', $json);
+            file_put_contents('res/config.json', $json);
             unset($_POST['database']);
 
             $this->model = new Model();
@@ -138,7 +138,7 @@ class InstallController extends BasicController
 
             }catch (\PDOException $e){
                 $this->model->pdo->rollBack();
-                file_put_contents('config.json','');
+                file_put_contents('res/config.json','');
                 throw new \Exception('An error occurred. We\'re sorry about this. Try to reconfigure.');
             }
 

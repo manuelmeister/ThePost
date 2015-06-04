@@ -28,11 +28,11 @@ class Model
      */
     function __construct()
     {
-        if (file_exists('config.json')) {
+        if (file_exists('res/config.json')) {
 
 
             try {
-                $config = json_decode(file_get_contents('config.json'));
+                $config = json_decode(file_get_contents('res/config.json'));
                 if (is_a($config, 'stdClass')) {
                     foreach ($config as $key => $value) {
                         if (empty($value)) {
