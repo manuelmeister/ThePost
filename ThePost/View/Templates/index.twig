@@ -9,13 +9,35 @@
     <div class="content row">
         <main class="main col-md-8">
             {% block main %}
-                {% for entry in entries %}
-                    <article class="element entry clearfix" id="entry-{{ entry.id }}">
-                        <h2><a href="/entry/{{ entry.slug }}">{{ entry.title }}</a></h2>
+                {% if entries is empty %}
+                    {% if authentication.login %}
+                        <article class="element entry clearfix" id="entry-{{ entry.id }}">
+                            <h2>Hello!</h2>
 
-                        <div>{{ entry.content|raw }}</div>
-                    </article>
-                {% endfor %}
+                            <p>
+                                There are no entries at the moment.
+                                <a href="/add/entry/">Add an entry</a>
+                            </p>
+                        </article>
+                    {% else %}
+                        <article class="element entry clearfix" id="entry-{{ entry.id }}">
+                            <h2>Hello!</h2>
+
+                            <p>
+                                There are no entries at the moment.<br/>
+                                To add any entries please <a href="/login/">log in</a>.
+                            </p>
+                        </article>
+                    {% endif %}
+                {% else %}
+                    {% for entry in entries %}
+                        <article class="element entry clearfix" id="entry-{{ entry.id }}">
+                            <h2><a href="/entry/{{ entry.slug }}">{{ entry.title }}</a></h2>
+
+                            <p>{{ entry.content|raw }}</p>
+                        </article>
+                    {% endfor %}
+                {% endif %}
             {% endblock %}
         </main>
         {% block sidebar %}
@@ -39,12 +61,14 @@
 {% endblock %}
 <style>
     /* User Styles */
-    body{
+    body {
         background-color: {{ options.style_backgroundcolor }};
     }
+
     h2, h2 a {
         color: {{ options.style_h2color }};
     }
+
     h2:hover, h2 a:hover {
         color: {{ options.style_h2color_hover }};
     }
