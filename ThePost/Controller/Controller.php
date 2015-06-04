@@ -36,7 +36,7 @@ class Controller
     private $request;
 
     /**
-     * @var MainController
+     * @var BasicController|MainController
      */
     private $controller;
 
@@ -46,7 +46,7 @@ class Controller
     private $user;
 
     /**
-     *
+     * Initialize controller
      */
     function __construct()
     {
@@ -72,8 +72,10 @@ class Controller
             } catch (\Exception $e) {
                 // Catch every thrown error that's inside creation block
                 $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
-                $this->controller->get_options();
-                $this->controller->view_set_vars();
+                if($this->controller->model != null){
+                    $this->controller->get_options();
+                    $this->controller->view_set_vars();
+                }
                 echo $this->controller->view->render();
             }
 
@@ -113,7 +115,8 @@ class Controller
     }
 
     /**
-     *
+     * Gets user from the database by the $_SESSION user_id variable
+     * @uses $_SESSION['user_id']
      */
     private function session_management()
     {
@@ -136,6 +139,7 @@ class Controller
      * $controller contains the path to the Controller that is actually used
      * $method contains the method used by the Controller
      * $param contains the parameter given by the route
+     * @uses request
      */
     private function create_controller()
     {
@@ -152,7 +156,7 @@ class Controller
     }
 
     /**
-     *
+     * Sets render vars
      */
     private function init_vars()
     {
