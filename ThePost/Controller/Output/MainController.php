@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 14.05.15
- * Time: 00:25
- */
 
 namespace ThePost\Controller\Output;
 

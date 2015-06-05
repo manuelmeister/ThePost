@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bwalkl
- * Date: 22.05.2015
- * Time: 08:09
- */
 
 namespace ThePost\View;
 

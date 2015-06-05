@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bmeism
- * Date: 03.06.2015
- * Time: 11:01
- */
 
 namespace ThePost\Controller\CRUD;
 

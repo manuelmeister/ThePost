@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 13.05.15
- * Time: 18:06
- */
 
 namespace ThePost\Model\Entity;
-
 
 /**
  * Class Options

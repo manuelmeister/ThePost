@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 13.05.15
- * Time: 21:52
- */
 
 namespace ThePost\Model\Repository;
 use HTMLPurifier;

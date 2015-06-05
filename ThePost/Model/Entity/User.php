@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 19.05.15
- * Time: 12:53
- */
 
 namespace ThePost\Model\Entity;
 
