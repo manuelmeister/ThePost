@@ -2,6 +2,7 @@
 
 namespace ThePost\Controller\Output;
 
+use Exception;
 use ThePost\Controller\BasicController;
 use ThePost\Model\Model;
 use ThePost\Model\Repository\OptionRepository;
@@ -30,6 +31,7 @@ class InstallController extends BasicController
     /**
      * Creates Database and redirects to the frontpage
      * @uses $_POST['database']
+     * @throws Exception
      */
     public function publish()
     {
@@ -44,8 +46,13 @@ class InstallController extends BasicController
 
 
             $json = json_encode($database);
-            file_put_contents('res/config.json', $json);
-            unset($_POST['database']);
+            try{
+                file_put_contents('res/config.json', $json);
+            }catch (\Exception $e){
+                throw new \Exception('Sorry, ThePost has no access to save to res/config.json. Change the file system permissions of the folder "res" in the root folder to 775 and delete res/config.json ');
+            }finally{
+                unset($_POST['database']);
+            }
 
             $this->model = new Model();
 
