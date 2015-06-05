@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bwalkl
- * Date: 22.05.2015
- * Time: 08:25
- */
 
 namespace ThePost\Model\Repository;
 use ThePost\Model\Entity\Options;
@@ -17,7 +11,7 @@ class OptionRepository extends Repository{
      * @return Options
      */
     public function findByParam($key){
-        $stmt = $this->pdo->prepare("SELECT * FROM Options WHERE 'key'=':key' OR slug=:param LIMIT 1");
+        $stmt = $this->pdo->prepare("SELECT * FROM Options WHERE 'key'=':key' LIMIT 1");
         $stmt->bindParam(":key",$key);
         $stmt->execute();
         return $stmt->fetchObject('ThePost\Model\Entity\Options');

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bmeism
- * Date: 28.05.2015
- * Time: 09:50
- */
 
 namespace ThePost\Model\Repository;
 

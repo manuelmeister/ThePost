@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 12.05.15
- * Time: 21:34
- */
 
 namespace ThePost\View;
 use Twig_Loader_Filesystem;

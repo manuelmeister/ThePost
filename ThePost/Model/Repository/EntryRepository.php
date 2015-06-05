@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: manuelmeister
- * Date: 13.05.15
- * Time: 21:52
- */
 
 namespace ThePost\Model\Repository;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use ThePost\Model\Entity\Entry;
 
 
 /**
@@ -58,10 +51,13 @@ class EntryRepository extends Repository{
 
     }
 
+
     /**
-     * @param $title
-     * @param $text
-     * @return int
+     * @param $user_id int
+     * @param $slug String URL (Title escaped)
+     * @param $title String Title of the entry
+     * @param $text String Content
+     * @return bool Return false if operation fails
      */
     public function add($user_id, $slug, $title, $text){
 

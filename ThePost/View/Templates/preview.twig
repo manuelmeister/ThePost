@@ -1,11 +1,7 @@
 {% extends "index.twig" %}
 
     {% block styles %}
-        {% if authentication.login %}
-            <link rel="stylesheet" href="/ThePost/View/Templates/css/style-summernote.css"/>
-        {% else %}
-            <link rel="stylesheet" href="/ThePost/View/Templates/css/style.css"/>
-        {% endif %}
+            <link rel="stylesheet" href="/ThePost/View/Templates/css/style.min.css"/>
     {% endblock %}
 
 {% block main %}
@@ -16,24 +12,24 @@
     </div>
 
     {% if entry.id is defined %}
-<article class="element entry clearfix" id="entry-{{ entry.id }}">
+        <article class="element entry clearfix" id="entry-{{ entry.id }}">
     {% else %}
-    <article class="element entry clearfix" id="entry-0">
-        {% endif %}
+        <article class="element entry clearfix" id="entry-0">
+    {% endif %}
 
-        {% if authentication.login %}
-            <header class="clearfix">
-                <a href="/edit/entry/{{ entry.id }}" class="btn btn-default pull-left" role="button">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="update"> Edit</span>
-                </a>
-                <button class="update btn btn-danger pull-right" onclick="areYouSure()">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    <span class="update"> Delete</span>
-                </button>
-            </header>
-            <header id="sureHeader" class="clearfix">
-                <div hidden class="alert alert-warning" id="sureDiv" role="alert">
+            {% if authentication.login %}
+                <header class="clearfix">
+                    <a href="/edit/entry/{{ entry.id }}" class="btn btn-default pull-left" role="button">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="update"> Edit</span>
+                    </a>
+                    <button class="update btn btn-danger pull-right" onclick="areYouSure()">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        <span class="update"> Delete</span>
+                    </button>
+                </header>
+                <header id="sureHeader" class="clearfix">
+                    <div hidden class="alert alert-warning" id="sureDiv" role="alert">
             <span>
                 <p>Are you sure you want to delete this entry?</p>
             </span>
@@ -48,26 +44,19 @@
                         </button>
                     </div>
                     </span>
-            </header>
-            {# glyphicon-floppy-open #}
-        {% else %}
-        {% endif %}
+                </header>
+                {# glyphicon-floppy-open #}
+            {% else %}
+            {% endif %}
 
-        <h2 class="title">{{ entry.title }}</h2>
-
-        <div class="text">{{ entry.content|raw }}</div>
-        <date class="pull-right">{{ entry.timestamp|date }}</date>
+    <h2 class="title">{{ entry.title }}</h2>
+    <div class="text">{{ entry.content|raw }}</div>
+            <time class="pull-right" datetime="{{ entry.timestamp }}">{{ entry.timestamp|date }}</time>
 
     </article>
 
     {% endblock %}
 
     {% block scripts %}
-    <script src="/ThePost/View/Templates/js/upload.js"></script>
-    <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.summernote').summernote().code('{{ entry.content|raw }}');
-        });
-    </script>
+    <script src="/ThePost/View/Templates/js/upload.min.js"></script>
 {% endblock %}

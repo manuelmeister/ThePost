@@ -3,8 +3,6 @@
 namespace ThePost\Controller\CRUD;
 
 use ThePost\Model\Repository\EntryRepository;
-use ThePost\Model\Repository\OptionRepository;
-use ThePost\View\EntryView;
 
 /**
  * Class CreateController
