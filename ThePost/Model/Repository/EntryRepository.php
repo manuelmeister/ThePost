@@ -51,10 +51,13 @@ class EntryRepository extends Repository{
 
     }
 
+
     /**
-     * @param $title
-     * @param $text
-     * @return int
+     * @param $user_id int
+     * @param $slug String URL (Title escaped)
+     * @param $title String Title of the entry
+     * @param $text String Content
+     * @return bool Return false if operation fails
      */
     public function add($user_id, $slug, $title, $text){
 
