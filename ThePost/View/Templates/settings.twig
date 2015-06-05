@@ -7,7 +7,7 @@
 {% block main %}
     {% if authentication.login %}
 
-        <form class="element clearfix" action="/settings/submit" method="post">
+        <form class="element clearfix" action="/settings/submit/" method="post">
             <h2>Settings</h2>
             {% for setting in settings %}
                 <div class="form-group clearfix">
