@@ -25,11 +25,18 @@ class DeleteController extends CRUDController
                     case 'entry':
 
                         $entry_repository = new EntryRepository($this->model->pdo);
-                        if (!$entry_repository->deleteById($param['id'])) {
-                            http_response_code(404);
-                            header("HTTP/1.0 404 Not found", true, 404);
-                            throw new \Exception('Sorry, the post could not be deleted.');
+
+                        if($this->user_permission($param['id'])){
+                            if (!$entry_repository->deleteById($param['id'])) {
+                                http_response_code(404);
+                                header("HTTP/1.0 404 Not found", true, 404);
+                                throw new \Exception('Sorry, the post could not be deleted.');
+                            }
+                        }else{
+                            header("HTTP/1.0 404 Not authorized", true, 401);
+                            throw new \Exception('You are not allowed to delete the post of someone else!');
                         }
+
 
                         break;
                     case 'setting':

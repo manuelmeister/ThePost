@@ -4,6 +4,7 @@ namespace ThePost\Model\Repository;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use ThePost\Model\Entity\Entry;
 
 
 /**
@@ -16,7 +17,7 @@ class EntryRepository extends Repository
     /**
      * this functions finds an Entry by its ID
      * @param $param
-     * @return mixed
+     * @return Entry
      */
     public function findByParam($param)
     {

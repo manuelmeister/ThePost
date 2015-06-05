@@ -12,23 +12,30 @@ function uploadEntry(type, id){
 
     $.ajax({
         type: 'POST',
-        url: '/upload/'+type+"/"+id,
+        url: '/upload/'+type+"/"+id+'?XDEBUG_SESSION_START=15156',//TODO remove session
         data: data,
+        statusCode:{
+            404: function(){
+                $("button.update").removeClass().addClass("update btn btn-danger");
+                $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
+                $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be updated.');
+            },
+            401: function(){
+                $("button.update").removeClass().addClass("update btn btn-danger");
+                $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
+                $("#crud-error").removeClass("hidden").html('You are not allowed to update, because you are not <a href="/login/">logged in</a>.');
+            },
+            406: function(){
+                $("button.update").removeClass().addClass("update btn btn-danger");
+                $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
+                $("#crud-error").removeClass("hidden").html('You are not allowed to update, because this post does not belong to you.');
+            }
+        },
         success: function () {
             $("button.update").removeClass("btn-default").addClass("btn-success");
             $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-ok").text();
             $("span.update").text(" Updated");
             window.location.replace("/");
-        },
-        statusCode:{
-            404: function(){
-                $("button.update").removeClass().addClass("btn btn-danger");
-                $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be updated.');
-            },
-            401: function(){
-                $("button.update").removeClass().addClass("btn btn-danger");
-                $("#crud-error").removeClass("hidden").html('You are not allowed to update, because you are not <a href="/login/">logged in</a>.');
-            }
         }
 
 
@@ -61,10 +68,14 @@ function addEntry(type){
         statusCode:{
             404: function(){
                 $("button.update").removeClass().addClass("btn btn-danger");
+                $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
+                $("span.update").text(" Error");
                 $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be created.');
             },
             401: function(){
                 $("button.update").removeClass().addClass("btn btn-danger");
+                $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
+                $("span.update").text(" Error");
                 $("#crud-error").removeClass("hidden").html('You are not allowed to create, because you are not <a href="/login/">logged in</a>.');
             }
         }
@@ -94,6 +105,8 @@ function uploadOptions(type, key, event){
         },
         error: function () {
             $("button.setting-"+key).removeClass("btn-*").addClass("btn-danger");
+            $("span.update").text(" Error");
+            $("button.update .glyphicon").removeClass().addClass("glyphicon glyphicon-remove").text();
         }
     });
 }
@@ -109,9 +122,13 @@ function deleteEntry(key){
         statusCode:{
             404: function(){
                 $("#crud-error").removeClass("hidden").text('Sorry, Entry could not be deleted.');
+                $("button.update .glyphicon").removeClass("glyphicon-*").addClass("glyphicon-remove").text();
+                $("span.update").text(" Error");
             },
             401: function(){
                 $("#crud-error").removeClass("hidden").html('You are not allowed to delete, because you are not <a href="/login/">logged in</a>.');
+                $("button.update .glyphicon").removeClass("glyphicon-*").addClass("glyphicon-remove").text();
+                $("span.update").text(" Error");
             }
         },
         success: function () {

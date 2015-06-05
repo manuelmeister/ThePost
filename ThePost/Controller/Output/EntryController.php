@@ -2,8 +2,10 @@
 
 namespace ThePost\Controller\Output;
 
+use ThePost\Model\Entity\Entry;
 use ThePost\Model\Repository\EntryRepository;
 use ThePost\View\EntryView;
+use ThePost\View\ErrorView;
 use ThePost\View\PreviewView;
 
 /**
@@ -23,6 +25,9 @@ class EntryController extends MainController
         $entries_repository = new EntryRepository($this->model->pdo);
         if ($entry = $entries_repository->findByParam($param)) {
             $this->view = new PreviewView($entry);
+            if($this->authentication->getId() == $entry->getUserId()){
+                $this->view->add_render_vars(array("access" => array("edit" => true)));
+            }
         } else {
             throw new \Exception("Entry $param not found!");
         }
@@ -37,9 +42,15 @@ class EntryController extends MainController
     {
         $param = (isset($input['slug'])) ? $input['slug'] : $input['id'];
         $entries_repository = new EntryRepository($this->model->pdo);
+        /** @var Entry $entry */
         if ($entry = $entries_repository->findByParam($param)) {
-            $this->view = new EntryView();
-            $this->view->read($entry);
+            if($this->authentication->getId() == $entry->getUserId()){
+                $this->view = new EntryView();
+                $this->view->read($entry);
+                $this->view->add_render_vars(array("access" => array("edit" => true)));
+            }else{
+                $this->view = new ErrorView('Access: ', "Entry $param", " isn't yours!");
+            }
         } else {
             throw new \Exception("Entry $param not found!");
         }

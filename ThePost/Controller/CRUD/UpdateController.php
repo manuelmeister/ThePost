@@ -32,12 +32,18 @@ class UpdateController extends CRUDController
                         $text = $_POST['text'];
 
                         $entry_repository = new EntryRepository($this->model->pdo);
-                        $entry_repository->update(intval($param['slug']), $title, $text);
+
+                        if($this->user_permission($param['slug'])){
+                            $entry_repository->update(intval($param['slug']), $title, $text);
+                        }else{
+                            header("HTTP/1.0 406 Not authorized", true, 406);
+                            throw new \Exception("You are not allowed to update this entry.");
+                        }
 
                         break;
                     case 'setting':
                         if (!isset($param['slug']) & !isset($_POST['value'])) {
-                            header("HTTP/1.0 404 Not Found");
+                            header("HTTP/1.0 404 Not found", true, 404);
                             throw new \Exception("No content given to update.");
                         }
                         $key = $param['slug'];
@@ -49,7 +55,7 @@ class UpdateController extends CRUDController
                 sleep(1);
 
             } else {
-                header("HTTP/1.0 401 Not authorized");
+                header("HTTP/1.0 401 Not authorized", true, 401);
                 throw new \Exception("You are not allowed to update, because you are not logged in.");
             }
 

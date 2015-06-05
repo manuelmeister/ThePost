@@ -19,6 +19,14 @@
   controller: "Output\LoginController"
   method: "submit"
 -
+  match: "(^/register/?$)"
+  controller: "Output\RegisterController"
+  method: "register"
+-
+  match: "(^/register/submit/?$)"
+  controller: "Output\RegisterController"
+  method: "submit"
+-
   match: "(^/logout/?$)"
   controller: "Output\LoginController"
   method: "logout"

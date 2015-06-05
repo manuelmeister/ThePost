@@ -24,4 +24,19 @@ class UserRepository extends Repository
         return $stmt->fetchObject('ThePost\Model\Entity\User');
     }
 
+    /**
+     * @param $username
+     * @param $email
+     * @param $password_hash
+     * @return bool
+     */
+    public function add($username, $email, $password_hash)
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO User(username, email, password_hash) VALUES (:username,:email,:password_hash);');
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password_hash', $password_hash);
+        return $stmt->execute();
+    }
+
 }

@@ -6,6 +6,7 @@ namespace ThePost\Controller;
 use ThePost\Model\Entity\Options;
 use ThePost\Model\Entity\User;
 use ThePost\Model\Model;
+use ThePost\Model\Repository\EntryRepository;
 use ThePost\Model\Repository\OptionRepository;
 use ThePost\View\View;
 
@@ -70,5 +71,15 @@ class BasicController
     public function set_authentication($authentication)
     {
         $this->authentication = $authentication;
+    }
+
+    /**
+     * @param $id int
+     * @return bool
+     */
+    public function user_permission($id)
+    {
+        $entry_repository = new EntryRepository($this->model->pdo);
+        return ($this->authentication->getId() == $entry_repository->findByParam($id)->getUserId());
     }
 }
