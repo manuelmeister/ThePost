@@ -20,10 +20,10 @@
     </div>
 
     {% if entry.id is defined %}
-    <article class="element entry clearfix" id="entry-{{ entry.id }}">
-        {% else %}
-        <article class="element entry clearfix" id="entry-0">
-    {% endif %}
+<article class="element entry clearfix" id="entry-{{ entry.id }}">
+    {% else %}
+    <article class="element entry clearfix" id="entry-0">
+        {% endif %}
         {% if authentication.login %}
 
             <h2 class="title onedit" contenteditable="true" data-placeholder="Your title">{{ entry.title }}</h2>
@@ -48,9 +48,9 @@
 
     </article>
 
-{% endblock %}
+    {% endblock %}
 
-{% block scripts %}
+    {% block scripts %}
     <script src="/ThePost/View/Templates/js/upload.min.js"></script>
     <script src="/ThePost/View/Templates/js/summernote.min.js"></script>
     <script>

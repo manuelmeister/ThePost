@@ -17,7 +17,8 @@
                         {% if setting.type == "color" %}
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input type="color" class="input-setting-{{ setting.key }} color" id="setting-{{ setting.key }}"
+                                    <input type="color" class="input-setting-{{ setting.key }} color"
+                                           id="setting-{{ setting.key }}"
                                            name="settings[{{ setting.key }}]"
                                            value="{{ setting.value }}"
                                            onchange="$('#setting-{{ setting.key }}_text').val($(this).val())">
@@ -27,7 +28,9 @@
                                        onchange="$('#setting-{{ setting.key }}').val($(this).val())">
                             </div>
                         {% elseif setting.type == "textarea" %}
-                            <textarea name="settings[{{ setting.key }}]" class="input-setting-{{ setting.key }} form-control" id="setting-{{ setting.key }}" cols="100%">{{ setting.value }}</textarea>
+                            <textarea name="settings[{{ setting.key }}]"
+                                      class="input-setting-{{ setting.key }} form-control"
+                                      id="setting-{{ setting.key }}" cols="100%">{{ setting.value }}</textarea>
                         {% else %}
                             <input type="{{ setting.type }}" class="input-setting-{{ setting.key }} form-control"
                                    id="setting-{{ setting.key }}" name="settings[{{ setting.key }}]"

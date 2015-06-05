@@ -8,10 +8,11 @@
 <div class="container-fluid">
     <div class="content row">
         <main class="main col-md-8">
-            <form class="element clearfix" name="installForm" id="installForm" method="post" action="/install/publish" autocomplete="off">
+            <form class="element clearfix" name="installForm" id="installForm" method="post" action="/install/publish"
+                  autocomplete="off">
                 <h1>Install</h1>
                 {% if error.true %}
-                <p class="alert alert-danger">{{ error.msg|raw }}</p>
+                    <p class="alert alert-danger">{{ error.msg|raw }}</p>
                 {% endif %}
                 <p>Here you can set the basic settings.</p>
                 <section class="section">
@@ -31,7 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="database_port">Database Port</label>
-                        <input type="number" class="form-control" id="database_port" name="database[port]" value="3306" required>
+                        <input type="number" class="form-control" id="database_port" name="database[port]" value="3306"
+                               required>
 
                         <p class="help-block">Enter the port of your database. Normally the port is 3306 </p>
                     </div>
@@ -69,7 +71,8 @@
                     </div>
                     <div class="form-group">
                         <label for="user_email">E-Mail</label>
-                        <input type="email" class="form-control" id="user_email" name="user[email]" placeholder="info@chuun.ninja" required>
+                        <input type="email" class="form-control" id="user_email" name="user[email]"
+                               placeholder="info@chuun.ninja" required>
 
                         <p class="help-block">Enter your E-Mail Address, this will be used for your authentication. </p>
                     </div>
@@ -81,9 +84,11 @@
                     </div>
                     <div class="form-group">
                         <label for="user_password_verify">Confirm your password</label>
-                        <input type="password" class="form-control" id="user_password_verify" name="user[password_verify]" onkeyup="checkPass(); return false;" required>
+                        <input type="password" class="form-control" id="user_password_verify"
+                               name="user[password_verify]" onkeyup="checkPass(); return false;" required>
 
                         <p class="help-block">Reenter your previous password.</p>
+
                         <div hidden class="alert alert-warning" id="confirmMessageDiv" role="alert">
                             <p id="confirmMessage" class="confirmMessage"></p>
                         </div>
@@ -95,12 +100,15 @@
 
                     <div class="form-group">
                         <label for="title">Blog Title</label>
-                        <input type="text" class="form-control" id="title" name="setting[title]" value="Blog Title" required>
+                        <input type="text" class="form-control" id="title" name="setting[title]" value="Blog Title"
+                               required>
 
                         <p class="help-block">The title/logo of your blog.</p>
                     </div>
                     <h3>Welcome Widget</h3>
+
                     <p>The title of the right </p>
+
                     <div class="form-group">
                         <label for="welcome_title">Welcome Widget Title</label>
                         <input type="text" class="form-control" id="welcome_title" name="setting[welcome_title]"
@@ -110,7 +118,7 @@
                     <div class="form-group">
                         <label for="welcome_content">Welcome Widget Content</label>
                         <textarea class="form-control" id="welcome_content" name="setting[welcome_content]"
-                               placeholder="Welcome Widget Content"></textarea>
+                                  placeholder="Welcome Widget Content"></textarea>
 
                     </div>
                 </section>
@@ -119,27 +127,42 @@
 
                     <p class="bs-callout bs-callout-warning" role="alert">Don't be afraid :). You can still set these
                         settings later.</p>
+
                     <div class="form-group">
                         <label for="style_backgroundcolor_text">Background Color</label>
+
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="color" class="color" id="style_backgroundcolor" name="setting[style_backgroundcolor]" value="#EFEFEF" onchange="$('#style_backgroundcolor_text').val($(this).val())"></span>
-                            <input type="text" class="form-control" id="style_backgroundcolor_text" name="style_backgroundcolor_text" value="#EFEFEF" onchange="$('#style_backgroundcolor').val($(this).val())" required>
+                            <span class="input-group-addon"><input type="color" class="color" id="style_backgroundcolor"
+                                                                   name="setting[style_backgroundcolor]" value="#EFEFEF"
+                                                                   onchange="$('#style_backgroundcolor_text').val($(this).val())"></span>
+                            <input type="text" class="form-control" id="style_backgroundcolor_text"
+                                   name="style_backgroundcolor_text" value="#EFEFEF"
+                                   onchange="$('#style_backgroundcolor').val($(this).val())" required>
                         </div>
                         <p class="help-block">Background color.</p>
                     </div>
                     <div class="form-group">
                         <label for="style_h2color_text">Heading 2 font color.</label>
+
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color" name="setting[style_h2color]" value="#3873de" onchange="$('#style_h2color_text').val($(this).val())"></span>
-                            <input type="text" class="form-control" id="style_h2color_text" name="style_h2color_text" value="#3873de" onchange="$('#style_h2color').val($(this).val())" required>
+                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color"
+                                                                   name="setting[style_h2color]" value="#3873de"
+                                                                   onchange="$('#style_h2color_text').val($(this).val())"></span>
+                            <input type="text" class="form-control" id="style_h2color_text" name="style_h2color_text"
+                                   value="#3873de" onchange="$('#style_h2color').val($(this).val())" required>
                         </div>
                         <p class="help-block">The font color of <code>&lt;h2&gt;</code> Heading 2.</p>
                     </div>
                     <div class="form-group">
                         <label for="style_h2color_hover_text">Heading 2 hover font color.</label>
+
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color_hover" name="setting[style_h2color_hover]" value="#23527C" onchange="$('#style_h2color_hover_text').val($(this).val())"></span>
-                            <input type="text" class="form-control" id="style_h2color_hover_text" name="style_h2color_hover_text" value="#23527C" onchange="$('#style_h2color_hover').val($(this).val())" required>
+                            <span class="input-group-addon"><input type="color" class="color" id="style_h2color_hover"
+                                                                   name="setting[style_h2color_hover]" value="#23527C"
+                                                                   onchange="$('#style_h2color_hover_text').val($(this).val())"></span>
+                            <input type="text" class="form-control" id="style_h2color_hover_text"
+                                   name="style_h2color_hover_text" value="#23527C"
+                                   onchange="$('#style_h2color_hover').val($(this).val())" required>
                         </div>
                         <p class="help-block">The font color of <code>&lt;h2&gt;</code> Heading 2 when hovered.</p>
                     </div>
@@ -147,7 +170,8 @@
                 <div hidden class="alert alert-warning" id="passwordsAlert" role="alert">
                     <p>Your passwords do not match!</p>
                 </div>
-                <button class="btn btn-primary pull-right" type="button"  onclick="checkSubmit()" id="submitButton" name="submitbtn">
+                <button class="btn btn-primary pull-right" type="button" onclick="checkSubmit()" id="submitButton"
+                        name="submitbtn">
                     Publish Blog
                 </button>
             </form>

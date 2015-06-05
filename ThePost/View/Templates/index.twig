@@ -3,20 +3,20 @@
         {% block title %}
             <title>{{ options.title }}</title>
         {% endblock %}
-    <style>
-        /* User Styles */
-        body {
-            background-color: {{ options.style_backgroundcolor }} !important;
-        }
+<style>
+    /* User Styles */
+    body {
+        background-color: {{ options.style_backgroundcolor }} !important;
+    }
 
-        h2, h2 a {
-            color: {{ options.style_h2color }} !important;
-        }
+    h2, h2 a {
+        color: {{ options.style_h2color }} !important;
+    }
 
-        h2:hover, h2 a:hover {
-            color: {{ options.style_h2color_hover }} !important;
-        }
-    </style>
+    h2:hover, h2 a:hover {
+        color: {{ options.style_h2color_hover }} !important;
+    }
+</style>
 {% include 'header.twig' %}
 <div class="container-fluid">
     <div class="content row">
