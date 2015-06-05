@@ -36,7 +36,7 @@
                     <p class="navbar-text">Logged in as {{ authentication.username }}</p>
                     <li class="{{ macro.active(site.logout) }}"><a href="/logout/" class="navbar-link">Logout</a></li>
                 {% else %}
-                    <li class="{{ macro.active(site.login) }}"><a href="/register/">Register</a></li>
+                    <li class="{{ macro.active(site.register) }}"><a href="/register/">Register</a></li>
                     <li class="{{ macro.active(site.login) }}"><a href="/login/">Login</a></li>
                 {% endif %}
             {% endblock %}
