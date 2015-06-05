@@ -3,7 +3,6 @@
 namespace ThePost\Model\Repository;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use ThePost\Model\Entity\Entry;
 
 
 /**
