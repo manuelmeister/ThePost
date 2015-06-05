@@ -439,7 +439,7 @@ h2.title.onedit:empty:before {
 }
 
 .note-dialog .note-help-dialog .note-shortcut-key {
-    font-family: "Courier New";
+    font-family: "Courier New", monospace;
     color: #dd0;
     text-align: right
 }
