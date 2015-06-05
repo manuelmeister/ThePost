@@ -35,7 +35,7 @@
 
     <h2 class="title">{{ entry.title }}</h2>
     <div class="text">{{ entry.content|raw }}</div>
-            <time class="pull-right">{{ entry.timestamp|date }}</time>
+            <time class="pull-right" datetime="{{ entry.timestamp }}">{{ entry.timestamp|date }}</time>
 
     </article>
 
