@@ -4,7 +4,7 @@
   "keywords": ["Blog","CMS","MVC","Twig"],
   "minimum-stability": "dev",
   "license": "MIT",
-  "version": 1.0.0
+  "version": 1.0.0,
   "require": {
     "twig/twig": "1.9.0",
     "mustangostang/spyc": "0.5.1",
