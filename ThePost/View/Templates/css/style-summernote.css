@@ -34,7 +34,7 @@ h2.title.onedit {
 }
 
 h2.title.onedit:empty:before {
-    content: attr(placeholder);
+    content: attr(data-placeholder);
     color: #808080;
 }
 
