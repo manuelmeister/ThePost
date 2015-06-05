@@ -6,7 +6,8 @@ namespace ThePost\Model\Entity;
  * Class Options
  * @package ThePost\Model\Entity
  */
-class Options {
+class Options
+{
 
     /**
      * @var string
@@ -94,7 +95,7 @@ class Options {
 
     function __toString()
     {
-       return $this->value;
+        return $this->value;
     }
 
 

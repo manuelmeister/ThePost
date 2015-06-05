@@ -9,7 +9,8 @@ use ThePost\Model\Entity\Entry;
  * Class EntryErrorView
  * @package ThePost\View
  */
-class EntryErrorView extends View{
+class EntryErrorView extends View
+{
 
     /**
      * Displays error view

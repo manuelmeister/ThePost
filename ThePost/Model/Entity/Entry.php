@@ -6,7 +6,8 @@ namespace ThePost\Model\Entity;
  * Class Entry
  * @package ThePost\Model\Entity
  */
-class Entry{
+class Entry
+{
 
     /**
      * @var int
@@ -90,6 +91,14 @@ class Entry{
     }
 
     /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
      * @return string
      */
     public function getExcerpt()
@@ -101,14 +110,6 @@ class Entry{
             $matches
         );
 
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
     }
 
     /**

@@ -7,7 +7,8 @@ namespace ThePost\View;
  * Class ErrorView
  * @package ThePost\View
  */
-class ErrorView extends View{
+class ErrorView extends View
+{
 
     /**
      * Displays error
@@ -15,13 +16,13 @@ class ErrorView extends View{
      * @param $page String
      * @param $param String
      */
-    function __construct($type,$page,$param)
+    function __construct($type, $page, $param)
     {
         parent::__construct();
 
         $this->render_vars['error'] = array(
-            'msg'   =>  $param,
-            'page'  =>  $page
+            'msg' => $param,
+            'page' => $page
         );
 
         $this->render_vars['type'] = $type;

@@ -7,7 +7,8 @@ namespace ThePost\View;
  * Class FrontView
  * @package ThePost\View
  */
-class FrontView extends View {
+class FrontView extends View
+{
 
     /**
      * @param $entries Array

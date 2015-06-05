@@ -53,21 +53,21 @@ class EntryController extends MainController
     public function create($param)
     {
         try {
-            if($this->authentication->isLogin()){
+            if ($this->authentication->isLogin()) {
 
-                switch ($param['type']){
+                switch ($param['type']) {
                     case 'entry':
                         $this->view = new EntryView();
                         $this->view->create();
 
                         break;
                     default:
-                        throw new \Exception("Cannot add ".$param["type"]);
+                        throw new \Exception("Cannot add " . $param["type"]);
                 }
                 //TODO remove wait time
                 sleep(1);
 
-            }else{
+            } else {
                 throw new \Exception("You are not logged in.");
             }
 

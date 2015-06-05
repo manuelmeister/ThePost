@@ -11,7 +11,8 @@ use ThePost\View\FrontView;
  * Class MainController
  * @package ThePost\Controller
  */
-class MainController extends BasicController{
+class MainController extends BasicController
+{
 
     /**
      * @param $model Model
@@ -25,11 +26,12 @@ class MainController extends BasicController{
     /**
      * Displays all entries
      */
-    public function frontpage(){
+    public function frontpage()
+    {
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
         $this->view = new FrontView($entries);
-        $this->view->add_render_vars(array("site"=>array("home"=>true)));
+        $this->view->add_render_vars(array("site" => array("home" => true)));
     }
 
 }

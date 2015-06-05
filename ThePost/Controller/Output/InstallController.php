@@ -22,8 +22,8 @@ class InstallController extends BasicController
     public function install()
     {
         if (file_exists('res/config.json') && filesize('res/config.json') > 0) {
-            $this->view = new ErrorView('Error: ','','Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the res/config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
-        }else{
+            $this->view = new ErrorView('Error: ', '', 'Sorry, you\'ve already installed the database. To fix database configurations, access your webhost via FTP and edit the res/config.json file. </br> If you want to configure the settings, go to the <a href="/settings/">settings page</a>.');
+        } else {
             $this->view = new InstallView();
         }
     }
@@ -46,11 +46,11 @@ class InstallController extends BasicController
 
 
             $json = json_encode($database);
-            try{
+            try {
                 file_put_contents('res/config.json', $json);
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 throw new \Exception('Sorry, ThePost has no access to save to res/config.json. Change the file system permissions of the folder "res" in the root folder to 775 and delete res/config.json ');
-            }finally{
+            } finally {
                 unset($_POST['database']);
             }
 
@@ -98,18 +98,18 @@ class InstallController extends BasicController
             $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('style_backgroundcolor', '#efefef', 'Background Color', 'Background color of the site', 'color');";
             $tables['options_default'][] = "INSERT INTO `Options` (`key`, `value`, title, description, type) VALUES ('copyright', '© The Post', 'Copyright', 'Copyright information in the footer.', 'text');";
 
-            try{
+            try {
 
                 $this->model->pdo->beginTransaction();
 
                 foreach ($tables as $table) {
-                    if(is_array($table)){
+                    if (is_array($table)) {
                         foreach ($table as $row) {
                             $stmt = $this->model->pdo->prepare($row);
                             $stmt->execute();
                         }
 
-                    }else{
+                    } else {
                         $stmt = $this->model->pdo->prepare($table);
                         $stmt->execute();
                     }
@@ -123,29 +123,29 @@ class InstallController extends BasicController
 
                 $username = $_POST['user']['username'];
                 $email = $_POST['user']['email'];
-                $password_hash = password_hash($_POST['user']['password'],PASSWORD_BCRYPT);
+                $password_hash = password_hash($_POST['user']['password'], PASSWORD_BCRYPT);
 
                 $stmt = $this->model->pdo->prepare("INSERT INTO User (username, email, password_hash) VALUES (:username,:email,:password_hash);");
-                $stmt->bindParam(':username',$username);
-                $stmt->bindParam(':email',$email);
-                $stmt->bindParam(':password_hash',$password_hash);
+                $stmt->bindParam(':username', $username);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':password_hash', $password_hash);
                 $stmt->execute();
 
-                if(!$this->model->pdo->commit()){
+                if (!$this->model->pdo->commit()) {
                     throw new \Exception($this->model->pdo->errorInfo());
                 }
 
                 header("Location: /");
 
-            }catch (\PDOException $e){
+            } catch (\PDOException $e) {
                 $this->model->pdo->rollBack();
-                file_put_contents('res/config.json','');
+                file_put_contents('res/config.json', '');
                 throw new \Exception('An error occurred. We\'re sorry about this. Try to reconfigure.');
             }
 
 
         } else {
-            header("HTTP/1.0 406 No content given via POST",true,406);
+            header("HTTP/1.0 406 No content given via POST", true, 406);
             throw new \Exception("No database configurations given via <a href='/install/'>install</a>.");
         }
     }

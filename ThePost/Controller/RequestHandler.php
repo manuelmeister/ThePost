@@ -7,7 +7,8 @@ namespace ThePost\Controller;
  * Class RequestHandler
  * @package ThePost\Controller
  */
-class RequestHandler {
+class RequestHandler
+{
 
     /**
      * @var
@@ -29,8 +30,8 @@ class RequestHandler {
      */
     function __construct($uri)
     {
-        $this->uri = mb_split('\?',$uri)[0];
-        $this->routing_table = \Spyc::YAMLLoadString(file_get_contents(__DIR__.'/routing.yaml'));
+        $this->uri = mb_split('\?', $uri)[0];
+        $this->routing_table = \Spyc::YAMLLoadString(file_get_contents(__DIR__ . '/routing.yaml'));
         $this->setRoute();
     }
 
@@ -39,29 +40,32 @@ class RequestHandler {
      * @return bool
      * @throws \Exception
      */
-    private function setRoute(){
+    private function setRoute()
+    {
         foreach ($this->routing_table as $route) {
             //route["params"] contains parameter like "slug", "page" or "id"
-            if( preg_match($route['match'],$this->uri,$route['params']) ){
+            if (preg_match($route['match'], $this->uri, $route['params'])) {
                 $this->route = $route;
                 return true;
             }
         }
-        throw new \Exception("No Match: " . $this->uri,0);
+        throw new \Exception("No Match: " . $this->uri, 0);
     }
 
     /**
      * @return string
      */
-    public function getController(){
-        $controller = 'ThePost\\Controller\\'.$this->route['controller'];
+    public function getController()
+    {
+        $controller = 'ThePost\\Controller\\' . $this->route['controller'];
         return $controller;
     }
 
     /**
      * @return mixed
      */
-    public function getMethod(){
+    public function getMethod()
+    {
         return $this->route['method'];
     }
 

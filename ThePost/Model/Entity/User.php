@@ -7,7 +7,8 @@ namespace ThePost\Model\Entity;
  * Class User
  * @package ThePost\Model\Entity
  */
-class User {
+class User
+{
 
     /**
      * @var int

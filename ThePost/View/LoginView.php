@@ -7,7 +7,8 @@ namespace ThePost\View;
  * Class LoginView
  * @package ThePost\View
  */
-class LoginView extends View {
+class LoginView extends View
+{
 
     /**
      * Display Login

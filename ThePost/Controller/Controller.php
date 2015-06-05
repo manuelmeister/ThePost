@@ -66,7 +66,7 @@ class Controller
             } catch (\Exception $e) {
                 // Catch every thrown error that's inside creation block
                 $this->controller->view = new ErrorView('Error: ', '', $e->getMessage());
-                if($this->controller->model != null){
+                if ($this->controller->model != null) {
                     $this->controller->get_options();
                     $this->controller->view_set_vars();
                 }
@@ -77,25 +77,25 @@ class Controller
         } catch (ConfigException $e) {
             //wrong configuration
             $this->controller = new InstallController();
-            try{
+            try {
                 $this->controller->publish();
                 $this->model = new Model();
                 $this->controller = new MainController($this->model);
                 $this->controller->frontpage(array());
-                $this->controller->view->add_render_vars(array('error'  =>  array(
-                    'msg'   =>  $e->getMessage(),
-                    'true'   =>  false
+                $this->controller->view->add_render_vars(array('error' => array(
+                    'msg' => $e->getMessage(),
+                    'true' => false
                 )));
                 $this->controller->get_options();
-            }catch (\Exception $e){
+            } catch (\Exception $e) {
                 $this->controller->install();
-                $this->controller->view->add_render_vars(array('error'  =>  array(
-                    'msg'   =>  $e->getMessage(),
-                    'true'   =>  true
+                $this->controller->view->add_render_vars(array('error' => array(
+                    'msg' => $e->getMessage(),
+                    'true' => true
                 )));
             }
             echo $this->controller->view->render();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             //Other problem with the model
             $this->controller = new InstallController();
             $this->controller->install();

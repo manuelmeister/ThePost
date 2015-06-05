@@ -13,7 +13,8 @@ use ThePost\View\View;
  * Class BasicController
  * @package ThePost\Controller
  */
-class BasicController {
+class BasicController
+{
 
     /**
      * @var View
@@ -55,7 +56,7 @@ class BasicController {
      */
     public function view_set_vars()
     {
-        $this->view->set_render_vars($this->options_array,$this->authentication);
+        $this->view->set_render_vars($this->options_array, $this->authentication);
     }
 
     /**

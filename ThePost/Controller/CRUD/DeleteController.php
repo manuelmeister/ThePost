@@ -8,7 +8,8 @@ use ThePost\Model\Repository\EntryRepository;
  * Class DeleteController
  * @package ThePost\Controller\CRUD
  */
-class DeleteController extends CRUDController{
+class DeleteController extends CRUDController
+{
 
     /**
      * Deletes currently only an entry
@@ -24,9 +25,9 @@ class DeleteController extends CRUDController{
                     case 'entry':
 
                         $entry_repository = new EntryRepository($this->model->pdo);
-                        if(!$entry_repository->deleteById($param['id'])){
+                        if (!$entry_repository->deleteById($param['id'])) {
                             http_response_code(404);
-                            header("HTTP/1.0 404 Not found",true,404);
+                            header("HTTP/1.0 404 Not found", true, 404);
                             throw new \Exception('Sorry, the post could not be deleted.');
                         }
 
@@ -37,7 +38,7 @@ class DeleteController extends CRUDController{
                 sleep(1);
 
             } else {
-                header("HTTP/1.0 401 Not authorized",true,401);
+                header("HTTP/1.0 401 Not authorized", true, 401);
                 throw new \Exception("You are not allowed to delete, because you are not logged in.");
             }
 

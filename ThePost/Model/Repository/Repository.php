@@ -3,7 +3,8 @@
 namespace ThePost\Model\Repository;
 
 
-class Repository {
+class Repository
+{
 
     /**
      * @var \PDO

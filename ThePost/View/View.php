@@ -1,6 +1,7 @@
 <?php
 
 namespace ThePost\View;
+
 use Twig_Loader_Filesystem;
 
 
@@ -12,24 +13,21 @@ class View
 {
 
     /**
-     * @var \Twig_Loader_Filesystem
-     */
-    private $loader;
-
-    /**
      * @var \Twig_Environment
      */
     protected $twig;
-
     /**
      * @var \Twig_TemplateInterface
      */
     protected $template;
-
     /**
      * @var array
      */
     protected $render_vars = array();
+    /**
+     * @var \Twig_Loader_Filesystem
+     */
+    private $loader;
 
     /**
      *
@@ -62,18 +60,18 @@ class View
     }
 
     /**
-     * @param $filename
-     */
-    protected function set_template($filename)
-    {
-        $this->template = $this->twig->loadTemplate($filename);
-    }
-
-    /**
      * @return string
      */
     public function render()
     {
         return $this->template->render($this->render_vars);
+    }
+
+    /**
+     * @param $filename
+     */
+    protected function set_template($filename)
+    {
+        $this->template = $this->twig->loadTemplate($filename);
     }
 }

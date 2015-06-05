@@ -9,7 +9,8 @@ use ThePost\Model\Entity\Entry;
  * Class PreviewView
  * @package ThePost\View
  */
-class PreviewView extends View{
+class PreviewView extends View
+{
 
     /**
      * Previews entry

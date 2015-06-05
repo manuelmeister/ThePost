@@ -7,7 +7,8 @@ namespace ThePost\View;
  * Class EntryView
  * @package ThePost\View
  */
-class EntryView extends View{
+class EntryView extends View
+{
 
     /**
      * Calls parent
@@ -20,7 +21,8 @@ class EntryView extends View{
     /**
      * Displays entry.twig
      */
-    public function create(){
+    public function create()
+    {
         $this->set_template("entry.twig");
     }
 
@@ -28,7 +30,8 @@ class EntryView extends View{
      * Displays entry.twig and show the entry
      * @param $entry
      */
-    public function read($entry){
+    public function read($entry)
+    {
         $this->render_vars['entry'] = $entry;
         $this->set_template("entry.twig");
     }
