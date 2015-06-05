@@ -1,7 +1,7 @@
 {
   "name": "thepost/the-post",
   "description": "A simple Blog",
-  "keywords": ["Blog","CMS","MVC","Twig"]
+  "keywords": ["Blog","CMS","MVC","Twig"],
   "minimum-stability": "dev",
   "license": "MIT",
   "version": 1.0.0
