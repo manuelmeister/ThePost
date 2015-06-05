@@ -120,3 +120,11 @@ function deleteEntry(key){
     });
 
 }
+
+function areYouSure() {
+    $("#sureDiv").show();
+}
+
+function notSure() {
+    $("#sureDiv").hide();
+}

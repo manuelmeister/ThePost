@@ -16,30 +16,47 @@
     </div>
 
     {% if entry.id is defined %}
-        <article class="element entry clearfix" id="entry-{{ entry.id }}">
+<article class="element entry clearfix" id="entry-{{ entry.id }}">
     {% else %}
-        <article class="element entry clearfix" id="entry-0">
-    {% endif %}
+    <article class="element entry clearfix" id="entry-0">
+        {% endif %}
 
-    {% if authentication.login %}
-    <header class="clearfix">
-        <a href="/edit/entry/{{ entry.id }}" class="btn btn-default pull-left" role="button">
-            <span class="glyphicon glyphicon-pencil"></span>
-            <span class="update"> Edit</span>
-        </a>
+        {% if authentication.login %}
+            <header class="clearfix">
+                <a href="/edit/entry/{{ entry.id }}" class="btn btn-default pull-left" role="button">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="update"> Edit</span>
+                </a>
+                <button class="update btn btn-danger pull-right" onclick="areYouSure()">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="update"> Delete</span>
+                </button>
+            </header>
+            <header id="sureHeader" class="clearfix">
+                <div hidden class="alert alert-warning" id="sureDiv" role="alert">
+            <span>
+                <p>Are you sure you want to delete this entry?</p>
+            </span>
+                <span class="clearfix">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button class="update btn btn-default " onclick="notSure()">
+                            <span class="update"> No</span>
+                        </button>
+                        <button class="update btn btn-success" onclick="deleteEntry({{ entry.id }})">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            <span class="update"> Yes</span>
+                        </button>
+                    </div>
+                    </span>
+            </header>
+            {# glyphicon-floppy-open #}
+        {% else %}
+        {% endif %}
 
-        <button class="update btn btn-danger pull-right" onclick="deleteEntry({{ entry.id }})">
-            <span class="glyphicon glyphicon-trash"></span>
-            <span class="update"> Delete</span>
-        </button>
-    </header>
-        {# glyphicon-floppy-open #}
-    {% else %}
-    {% endif %}
+        <h2 class="title">{{ entry.title }}</h2>
 
-    <h2 class="title">{{ entry.title }}</h2>
-    <div class="text">{{ entry.content|raw }}</div>
-            <date class="pull-right">{{ entry.timestamp|date }}</date>
+        <div class="text">{{ entry.content|raw }}</div>
+        <date class="pull-right">{{ entry.timestamp|date }}</date>
 
     </article>
 
