@@ -24,9 +24,8 @@ class MainController extends BasicController{
 
     /**
      * Displays all entries
-     * @param $param Array
      */
-    public function frontpage($param){
+    public function frontpage(){
         $entry_repository = new EntryRepository($this->model->pdo);
         $entries = $entry_repository->findAll();
         $this->view = new FrontView($entries);

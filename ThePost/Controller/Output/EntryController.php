@@ -2,10 +2,7 @@
 
 namespace ThePost\Controller\Output;
 
-use ThePost\Controller\CRUD\CreateController;
-use ThePost\Controller\CRUD\CRUDController;
 use ThePost\Model\Repository\EntryRepository;
-use ThePost\View\EntryErrorView;
 use ThePost\View\EntryView;
 use ThePost\View\PreviewView;
 
