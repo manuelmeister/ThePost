@@ -12,7 +12,7 @@ function uploadEntry(type, id){
 
     $.ajax({
         type: 'POST',
-        url: '/upload/'+type+"/"+id+'?XDEBUG_SESSION_START=15156',//TODO remove session
+        url: '/upload/'+type+"/"+id,
         data: data,
         statusCode:{
             404: function(){
