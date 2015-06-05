@@ -47,13 +47,13 @@ class InstallController extends BasicController
 
             $json = json_encode($database);
             try {
-                if(is_writable('res/config.json')){
+                if(file_exists('res/config.json') && is_writable('res/config.json')){
                     file_put_contents('res/config.json', $json);
                 }else{
                     throw new Exception();
                 }
             } catch (\Exception $e) {
-                throw new \Exception('Sorry, ThePost has no access to save to res/config.json. Change the file system permissions of the folder "res" in the root folder to 775 and delete res/config.json ');
+                throw new \Exception('Sorry, the folder "res" either does not exist or ThePost has no access to save to res/config.json. Change the file system permissions of the folder "res" in the root folder to 775 and delete res/config.json ');
             } finally {
                 unset($_POST['database']);
             }

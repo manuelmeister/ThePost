@@ -1,8 +1,5 @@
 .idea/
 vendor/
-res/
-
-config.json
 
 composer.lock
 composer.phar
