@@ -1,8 +1,10 @@
 {
   "name": "thepost/the-post",
   "description": "A simple Blog",
+  "keywords": ["Blog","CMS","MVC","Twig"]
   "minimum-stability": "dev",
-  "license": "proprietary",
+  "license": "MIT",
+  "version": 1.0.0
   "require": {
     "twig/twig": "1.9.0",
     "mustangostang/spyc": "0.5.1",
@@ -11,7 +13,8 @@
   "authors": [
     {
       "name": "Manuel Meister",
-      "email": "news.manuelsworld@gmail.com"
+      "email": "manuel@meister.io",
+      "homepage": "http://meister.io/"
     },
     {
       "name": "Lukas Walker",
