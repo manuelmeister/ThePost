@@ -2,7 +2,7 @@
 
 A simple Blog w/ MVC pattern, Twig
 
-## Requirements
+## Minimum Requirements
 * PHP 5.5.25
 * Apache 2
 * MySQL 5
